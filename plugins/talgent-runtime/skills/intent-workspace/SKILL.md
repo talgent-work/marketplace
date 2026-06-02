@@ -14,6 +14,7 @@ Check the runtime context first:
 - `TALGENT_WORK_ID` identifies the current Work execution.
 - `TALGENT_PROJECT_ID` identifies the Project.
 - `TALGENT_SANDBOX_ID` identifies the runtime Sandbox.
+- `TALGENT_AGENT_NAME` or `TALGENT_AGENT_ID`, when present, is the Work agent name copied from the Intent `agent` field.
 - Intent attribution may be present in startup args, prompt context, workspace files, or future runtime env.
 
 If an expected Intent fact is missing, say which fact is missing and continue from available workspace evidence.
@@ -42,6 +43,8 @@ When available, use Intent context in this order:
 
 If a future MCP server or command exposes Intent reads, use it to fetch comments, parent/child relations, linked Intents, and project wiki before searching blindly. Until that exists, inspect workspace-provided files and prompt context.
 
+Stay scoped to the current Intent. Use linked Intents to understand dependencies and history, but do not modify, comment on, or treat another Intent as the active Work target unless the user or platform explicitly directs that.
+
 ## Work Rules
 
 - Keep code edits in `/workspace/repos/<repo>` when a repository checkout exists.
@@ -49,4 +52,5 @@ If a future MCP server or command exposes Intent reads, use it to fetch comments
 - Put publishable deliverables in `/workspace/outputs`.
 - Use TodoWrite for multi-step work so the Portal can reflect progress.
 - State assumptions explicitly when Intent context is incomplete.
-- Do not log or print secrets from env vars, credentials, or repository remotes.
+- Create a current-Intent comment for important decisions, blockers, missing required context, and milestone-level progress when an Intent comment tool or MCP is available.
+- Do not list, dump, log, or print secrets from env vars, credentials, repository remotes, SSH keys, tokens, or auth files. Read only platform-named non-secret identity variables when needed.
