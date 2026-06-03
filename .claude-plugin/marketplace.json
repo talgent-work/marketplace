@@ -94,7 +94,12 @@
     {
       "name": "talgent-runtime",
       "displayName": "Talgent Runtime",
-      "source": "./plugins/talgent-runtime",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jacexh/talgent.git",
+        "path": "marketplace/plugins/talgent-runtime",
+        "ref": "main"
+      },
       "category": "Internal Systems",
       "defaultEnabled": true,
       "description": "Default Talgent Work runtime context: activates a Work executor agent, Intent workspace guidance, and lightweight plugin hook telemetry.",
