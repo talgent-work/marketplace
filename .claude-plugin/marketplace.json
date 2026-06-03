@@ -96,8 +96,8 @@
       "displayName": "Talgent Runtime",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/jacexh/talgent.git",
-        "path": "marketplace/plugins/talgent-runtime",
+        "url": "https://github.com/talgent-work/marketplace.git",
+        "path": "plugins/talgent-runtime",
         "ref": "main"
       },
       "category": "Internal Systems",
