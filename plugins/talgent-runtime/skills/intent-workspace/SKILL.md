@@ -9,14 +9,15 @@ Use this skill to ground work in Talgent's product model before acting.
 
 ## Runtime Identity
 
-Use the `talgent-runtime` MCP context first:
+Use Talgent platform context first:
 
-1. Use `get_current_intent`.
-2. Inspect `/workspace/inputs` for attachments listed by the current Intent payload.
-3. Use `list_current_intent_comments` for comments and then `mark_current_intent_comments_read` for comments you read.
-4. Use `get_current_intent_graph` when dependency, parent/child, or related Intent context can affect scope.
-5. Write deliverables under `/workspace/outputs`.
-6. Use `reply_current_intent_comment` when a visible platform reply is appropriate.
+1. Read the runtime identity supplied in the active agent prompt.
+2. Inspect the current Intent, its expected deliverables, and the attachment list before asking the user for context.
+3. Inspect `/workspace/inputs` for the materialized attachments listed by the current Intent.
+4. Inspect comments and acknowledge the comments you actually read through the available read-receipt capability.
+5. Inspect the current Intent graph when dependency, parent/child, or related Intent context can affect scope.
+6. Write deliverables under `/workspace/outputs`.
+7. Reply to the current Intent only when a visible platform reply is appropriate.
 
 If an expected Intent fact is missing from MCP, say which fact is missing and continue from available workspace evidence.
 
@@ -38,11 +39,11 @@ When available, use Intent context in this order:
 1. Intent title/key and description.
 2. Current user request.
 3. Intent comments, especially recent comments and unresolved questions.
-4. Parent, child, and related Intents from `get_current_intent_graph`.
+4. Parent, child, and related Intents from the current Intent graph.
 5. Project wiki or repository docs.
 6. Attachments under `/workspace/inputs`.
 
-Use MCP to fetch comments, parent/child relations, and linked Intents before searching blindly.
+Use available platform capabilities to fetch comments, parent/child relations, and linked Intents before searching blindly.
 
 Stay scoped to the current Intent. Use linked Intents to understand dependencies and history, but do not modify, comment on, or treat another Intent as the active Work target unless the user or platform explicitly directs that.
 
