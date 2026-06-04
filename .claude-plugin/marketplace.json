@@ -109,6 +109,20 @@
       "defaultEnabled": true,
       "description": "Default Talgent Work runtime context: activates a Work executor agent, Intent workspace guidance, and lightweight plugin hook telemetry.",
       "version": "0.1.2"
+    },
+    {
+      "name": "talgent-digital-employees",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/talgent-work/marketplace.git",
+        "path": "plugins/talgent-digital-employees",
+        "ref": "main"
+      },
+      "version": "0.0.1",
+      "description": "System plugin for project-level digital employee judgment.",
+      "author": {
+        "name": "Talgent"
+      }
     }
   ]
 }
