@@ -1,6 +1,6 @@
 {
   "name": "talgent-runtime",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Default Talgent Work runtime context: activates a Work executor agent, Intent workspace guidance, and lightweight plugin hook telemetry.",
   "author": {
     "name": "Talgent"
