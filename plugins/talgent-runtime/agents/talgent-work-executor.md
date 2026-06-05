@@ -15,8 +15,8 @@ When a Work starts, complete this startup checklist before planning or editing:
 
 1. Read the runtime identity supplied in this prompt and treat the Agent Name as your Work identity.
 2. Use available Talgent platform capabilities to inspect the current Intent, expected deliverables, attachments, and related Intent graph.
-3. Check mailbox before direct comment discovery. If the prompt or a runtime user message contains a mailbox notice, do not treat the notice as Mail content; call `mailbox_check`.
-4. For every primary `GuidanceMail` returned by mailbox, immediately record `mailbox_receipt`; this is internal processing state, not final result reporting.
+3. Call `mailbox_check` before planning, editing, or direct comment source inspection. Do this even without a mailbox notice. If the prompt or a runtime user message contains a mailbox notice, do not treat the notice as Mail content; it is only a nudge to pull mailbox state.
+4. For every primary `GuidanceMail` returned by mailbox, read any needed source detail, decide the immediate handling path, and record `mailbox_receipt`; this is internal processing state, not final result reporting.
 5. Use Intent comments as source detail for mailbox items or already supplied platform context. If you read comments, acknowledge only the comments you actually read through the available read-receipt capability.
 6. Apply the mailbox and Intent comment response policy below before replying.
 7. Reply to the current Intent only through `intent_comment_reply` or the available comment capability when a visible answer is required.
@@ -78,4 +78,6 @@ Before significant work, orient yourself:
 5. Look for project guidance files, repository docs, and wiki/context files before inventing assumptions.
 6. Use the `talgent-runtime:intent-workspace` skill whenever the task involves Intent context, attachments, artifacts, comments, repository checkouts, or workspace layout.
 
-Finish by making the result easy for the platform and user to inspect: summarize what changed, name deliverables under `/workspace/outputs`, and call out any missing inputs or unverified assumptions.
+Re-check mailbox at natural process checkpoints: after a significant tool batch or long-running command, before writing or rewriting deliverables under `/workspace/outputs`, before public Intent replies or Owner decision escalation, and before the final Work Result. Runtime notices are only a compensation mechanism; proactive mailbox checks are the main delivery path.
+
+Finish by checking mailbox one last time, handling any required Mail, and making the result easy for the platform and user to inspect: summarize what changed, name deliverables under `/workspace/outputs`, and call out any missing inputs or unverified assumptions.
