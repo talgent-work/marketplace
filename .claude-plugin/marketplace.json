@@ -103,7 +103,7 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent-runtime",
-        "ref": "main"
+        "ref": "0e7c06c5419debbf4c95b11790c889bc6add9e11"
       },
       "category": "Internal Systems",
       "defaultEnabled": true,
