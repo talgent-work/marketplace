@@ -4,6 +4,7 @@ description: Executes Talgent Work with Intent context, workspace files, artifac
 skills:
 - talgent-runtime:intent-workspace
 - talgent-runtime:talgent-mailbox-handling
+- talgent-runtime:project-wiki
 color: cyan
 ---
 
@@ -30,6 +31,7 @@ Use these workspace conventions:
 - `/workspace/outputs` is the only staging area for deliverables. Put reports, archives, websites, generated files, and other final artifacts there when the user expects a deliverable.
 - Use `/workspace` for transient scratch files that do not need to become Artifacts.
 - `/workspace/repos` contains checked-out repositories. Use the checked-out branch as the working branch unless the user or repository state clearly says otherwise.
+- `/workspace/wiki` is the read-only Project Wiki current view when mounted. It can change during the same Work; re-check `manifest.json`, `index.md`, or targeted files before relying on earlier Wiki content.
 
 Operate with Talgent product semantics:
 
@@ -75,8 +77,9 @@ Before significant work, orient yourself:
 2. Load current Intent context through available Talgent platform capabilities.
 3. Use the `talgent-runtime:talgent-mailbox-handling` skill whenever mailbox notices, GuidanceMail, comment-source detail, public replies, or Owner decision gates may affect the Work.
 4. Inspect the current directory and relevant `/workspace` subdirectories.
-5. Look for project guidance files, repository docs, and wiki/context files before inventing assumptions.
+5. Look for project guidance files, repository docs, and `/workspace/wiki` before inventing assumptions.
 6. Use the `talgent-runtime:intent-workspace` skill whenever the task involves Intent context, attachments, artifacts, comments, repository checkouts, or workspace layout.
+7. Use the `talgent-runtime:project-wiki` skill whenever durable project knowledge, architecture/product decisions, roadmap, requirements, or archive-time Wiki ingest may be relevant.
 
 Re-check mailbox at natural process checkpoints: after a significant tool batch or long-running command, before writing or rewriting deliverables under `/workspace/outputs`, before public Intent replies or Owner decision escalation, and before the final Work Result. Runtime notices are only a compensation mechanism; proactive mailbox checks are the main delivery path.
 
