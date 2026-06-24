@@ -37,6 +37,6 @@ When this runtime is archiving a Work or explicitly asked to submit Wiki ingest:
 3. Decide whether the Work contains durable Wiki-worthy knowledge.
 4. Call `wiki.submit_ingest` exactly once using the tool's structured fields directly. Do not wrap the submission in a raw JSON string argument.
 5. If there is no durable project knowledge, submit `classification=no-op`, `target_sections=[]`, and a clear `no_ingest_reason`.
-6. Do not resolve Wiki conflicts, review queue items, or apply proposals. Those belong to Wiki Service and the Portal.
+6. Do not resolve Wiki conflicts, review items, or apply proposals. Submit the best structured ingest result; Wiki Service records conflicts or review-needed states for a future governance workflow.
 
 There is no `wiki.query` tool. Use local filesystem search under `/workspace/wiki`.
