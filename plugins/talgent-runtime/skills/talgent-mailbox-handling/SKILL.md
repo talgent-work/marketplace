@@ -19,6 +19,7 @@ Mailbox is the discovery entry point. Intent comments are source detail.
 - Not every guidance item needs a public Intent comment reply. Every guidance item does need a processing receipt.
 - `intent_comment_reply` is public communication on the Intent. Use it only when a visible answer, status, or acknowledgement is appropriate.
 - `mailbox_update_state` is internal delivery state. Do not use it as public communication.
+- Mail subject/body are user-visible inbox card text. Keep subjects short and human-readable, keep bodies useful, and do not put delivery IDs, SourceFact IDs, run IDs, or raw request/tool IDs in subject/body. Put provenance in structured related fields.
 
 ## Mailbox-First Flow
 

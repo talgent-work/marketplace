@@ -32,11 +32,12 @@ Narrow bugfixes, hotfixes, local implementation notes, transient debugging, and 
 
 When this runtime is archiving a Work or explicitly asked to submit Wiki ingest:
 
-1. Reconstruct the Work context from the current Intent, attachments, comments/mailbox guidance, repository changes, and relevant local files.
-2. Check `/workspace/wiki/manifest.json` and targeted Wiki pages if the submission depends on current Wiki content.
-3. Decide whether the Work contains durable Wiki-worthy knowledge.
-4. Call `wiki.submit_ingest` exactly once using the tool's structured fields directly. Do not wrap the submission in a raw JSON string argument.
-5. If there is no durable project knowledge, submit `classification=no-op`, `target_sections=[]`, and a clear `no_ingest_reason`.
-6. Do not resolve Wiki conflicts, review items, or apply proposals. Submit the best structured ingest result; Wiki Service records conflicts or review-needed states for a future governance workflow.
+1. Call `wiki.read_source_work_messages` before deciding whether the Work is Wiki-worthy. Use its `evidence_items` and source message IDs as the Work evidence trail.
+2. Reconstruct any missing context from `/workspace/outputs`, repository changes, and relevant local files. Treat an empty `/workspace/outputs` directory as inconclusive; it is not enough to submit no-op when source Work evidence contains roadmap, requirement, architecture, operational, or behavior-contract conclusions.
+3. Check `/workspace/wiki/manifest.json` and targeted Wiki pages if the submission depends on current Wiki content.
+4. Decide whether the Work contains durable Wiki-worthy knowledge.
+5. Call `wiki.submit_ingest` exactly once using the tool's structured fields directly. Do not wrap the submission in a raw JSON string argument.
+6. If there is no durable project knowledge, submit `classification=no-op`, `target_sections=[]`, and a clear `no_ingest_reason` grounded in the source Work evidence check.
+7. Do not resolve Wiki conflicts, review items, or apply proposals. Submit the best structured ingest result; Wiki Service records conflicts or review-needed states for a future governance workflow.
 
 There is no `wiki.query` tool. Use local filesystem search under `/workspace/wiki`.

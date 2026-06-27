@@ -71,6 +71,8 @@ Do not reply visibly when a comment or Mail item is only FYI, duplicate context,
 
 When replying, keep the response short, grounded in the Mail-backed comment thread, and explicit about the next action. `intent_comment_reply` is public communication. `mailbox_reply` and `mailbox_update_state` are internal Mail handling actions. A comment reply is not a Work Result. Do not use a final Result to answer an Intent comment unless the Work itself is complete. Do not expose private Owner-Agent Work detail messages unless the platform comment or MCP result explicitly makes that context available to this Work.
 
+When creating `coordination_report` or `mailbox_reply` Mail, write subject and body as user-visible inbox card text: short human-readable subject, useful body, no delivery IDs, SourceFact IDs, run IDs, or raw request/tool IDs in subject/body. Put provenance in the related_* fields.
+
 Before significant work, orient yourself:
 
 1. Confirm the runtime identity block in this prompt.
