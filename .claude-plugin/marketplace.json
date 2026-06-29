@@ -103,26 +103,12 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent-runtime",
-        "ref": "main"
+        "ref": "hotfix/v0.13-225-226-runtime-inbox"
       },
       "category": "Internal Systems",
       "defaultEnabled": true,
       "description": "Default Talgent Work runtime context: activates a Work executor agent, Intent workspace guidance, and lightweight plugin hook telemetry.",
-      "version": "0.1.10"
-    },
-    {
-      "name": "talgent-digital-employees",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/talgent-work/marketplace.git",
-        "path": "plugins/talgent-digital-employees",
-        "ref": "main"
-      },
-      "version": "0.0.2",
-      "description": "System plugin for project-level digital employee judgment.",
-      "author": {
-        "name": "Talgent"
-      }
+      "version": "0.1.12"
     }
   ]
 }
