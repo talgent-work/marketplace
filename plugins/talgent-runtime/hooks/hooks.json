@@ -1,9 +1,39 @@
 {
-  "description": "Talgent runtime hook telemetry for plugin and skill usage.",
+  "description": "Talgent runtime hook telemetry for plugin, skill, and Coordinator mailbox usage.",
   "hooks": {
     "PostToolUse": [
       {
         "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__talgent-runtime__mailbox_read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__talgent-runtime__mailbox_update_state",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__talgent-runtime__coordination_submit_result",
         "hooks": [
           {
             "type": "command",

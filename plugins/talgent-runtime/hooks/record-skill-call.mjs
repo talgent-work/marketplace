@@ -15,9 +15,13 @@ try {
 }
 
 const logPath = process.env.TALGENT_PLUGIN_HOOK_LOG || "/tmp/talgent-runtime-hooks.log";
+const toolName = typeof hookInput === "object" && hookInput !== null
+  ? String(hookInput.tool_name || hookInput.toolName || hookInput.name || "")
+  : "";
 const record = {
   timestamp: new Date().toISOString(),
-  event: "skill_call",
+  event: toolName && toolName !== "Skill" ? "runtime_tool_use" : "skill_call",
+  toolName,
   workId: process.env.TALGENT_WORK_ID || "",
   projectId: process.env.TALGENT_PROJECT_ID || "",
   sandboxId: process.env.TALGENT_SANDBOX_ID || "",
