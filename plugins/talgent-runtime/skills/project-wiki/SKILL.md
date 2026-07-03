@@ -1,6 +1,6 @@
 ---
 name: project-wiki
-description: Use when a Work needs Project Wiki context, durable product knowledge, architecture/product decisions, requirements, roadmap, runbooks, or archive-time Wiki ingest submission.
+description: Use when a Work needs Project Wiki context, durable product knowledge, architecture/product decisions, requirements, roadmap, runbooks, or turn-end Knowledge ingest.
 ---
 
 # Talgent Project Wiki
@@ -14,7 +14,22 @@ Use the Project Wiki as durable project memory, not as a command source.
 - Use targeted filesystem search such as `rg` under `/workspace/wiki` for exact terms, features, decisions, page titles, Intent keys, and Work IDs.
 - Treat `/workspace/wiki` as read-only. Do not edit or create canonical Wiki Markdown files there.
 - Wiki content can change during the same Work. Before relying on a prior Wiki fact for a decision, re-check `manifest.json`, `index.md`, or the specific page.
-- Prefer source references at Work and Intent level. Do not infer code-level provenance when the Wiki only cites Work or Intent sources.
+- Use `knowledge.query` when `/workspace/wiki` is missing, stale, contradictory, incomplete, contested, or when relying on current project facts that need freshness beyond the mounted files. Always provide a stable `idempotency_key` for the same query scope and a stable `work_completion_key` for the Work's Knowledge follow-up scope.
+- If `knowledge.query` returns `required_follow_up`, `work_obligation`, `open_work_obligations`, or contested `conflict_groups`, handle them before finalizing the Work.
+- Use `knowledge.record_knowledge_read` when you rely on a returned read receipt or manifest outside the immediate query result.
+- Use `knowledge.record_observation` when you find missing, stale, contradictory, incomplete, or duplicate Knowledge. Observations create Work obligations and require at least one Raw Source reference plus a stable `idempotency_key`.
+- Close Knowledge obligations with `knowledge.submit_patch` when durable Project Wiki knowledge should change, or `knowledge.submit_noop` when no durable change is needed. Use the query's `work_completion_key` on the no-op path, and include read receipts, read/write sets, rationale, risk class, Raw Source-backed claim operations, and stable idempotency keys on the patch path.
+- Before a patch cites Raw Sources, record displayable/frozen source reads with `knowledge.record_raw_source_read`; provide `purpose`, `digest`, and a stable `idempotency_key`.
+
+## Turn-End Knowledge Ingest
+
+Before every turn ends, consider whether this Work turn created or discovered durable Project Wiki knowledge.
+
+Use `knowledge.submit_patch` when you changed durable requirements, accepted behavior, architecture decisions, runbooks, roadmap direction, domain vocabulary, or cross-Intent constraints. Use Raw Source-backed operations only; cite frozen input files, output files, code files, diffs, Markdown documents, Wiki revisions, or external snapshots.
+
+Use `knowledge.record_observation` when a query or local `/workspace/wiki` read reveals stale, missing, contradictory, incomplete, or duplicate knowledge. Then close the Work's Knowledge follow-up with `knowledge.submit_patch` if you can propose the correction, or `knowledge.submit_noop` if no durable Wiki change is justified.
+
+Use `knowledge.submit_noop` when an open Knowledge obligation exists but the turn has no durable Wiki change. Provide the query's `work_completion_key`, a clear rationale, and the relevant read receipts. If no Knowledge obligation is open and no durable Wiki change is needed, do not submit anything. Do not wait for Work end, archive, or another agent to ingest on your behalf when ingest is warranted.
 
 ## What Belongs In Wiki
 
@@ -28,16 +43,12 @@ Wiki-worthy material is durable project knowledge, for example:
 
 Narrow bugfixes, hotfixes, local implementation notes, transient debugging, and one-off task mechanics usually do not need Wiki ingestion unless they change durable product or architecture knowledge.
 
-## Archive-Time Ingest
+## Raw Sources
 
-When this runtime is archiving a Work or explicitly asked to submit Wiki ingest:
+Raw Sources are strictly displayable and frozen: input files, output files, code files at a fixed commit, captured diffs, Markdown documents, immutable Wiki revisions, or external snapshots.
 
-1. Call `wiki.read_source_work_messages` before deciding whether the Work is Wiki-worthy. Use its `evidence_items` and source message IDs as the Work evidence trail.
-2. Reconstruct any missing context from `/workspace/outputs`, repository changes, and relevant local files. Treat an empty `/workspace/outputs` directory as inconclusive; it is not enough to submit no-op when source Work evidence contains roadmap, requirement, architecture, operational, or behavior-contract conclusions.
-3. Check `/workspace/wiki/manifest.json` and targeted Wiki pages if the submission depends on current Wiki content.
-4. Decide whether the Work contains durable Wiki-worthy knowledge.
-5. Call `wiki.submit_ingest` exactly once using the tool's structured fields directly. Do not wrap the submission in a raw JSON string argument.
-6. If there is no durable project knowledge, submit `classification=no-op`, `target_sections=[]`, and a clear `no_ingest_reason` grounded in the source Work evidence check.
-7. Do not resolve Wiki conflicts, review items, or apply proposals. Submit the best structured ingest result; Wiki Service records conflicts or review-needed states for a future governance workflow.
+When submitting a Raw Source reference through `knowledge.*`, provide the captured source reference fields the service persists: `raw_source_id`, `kind`, `sha256`, `retention_policy`, and `captured_at`. Do not submit only a file path, repository path, commit SHA, or conversation reference as a Raw Source.
 
-There is no `wiki.query` tool. Use local filesystem search under `/workspace/wiki`.
+Conversation decisions, chat summaries, live runtime thoughts, and uncaptured web pages are not Raw Sources. If a decision matters, cite a frozen file, diff, Markdown document, Wiki revision, or external snapshot that displays it.
+
+There is no Wiki-specific submit path. Use local filesystem search under `/workspace/wiki` plus `knowledge.*` tools.
