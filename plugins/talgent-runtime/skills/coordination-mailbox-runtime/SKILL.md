@@ -1,6 +1,6 @@
 ---
 name: coordination-mailbox-runtime
-description: MUST use in Intent Coordinator or PM Coordinator runtimes when reading selected Mail, updating delivery state, or submitting coordination results.
+description: MUST use in Intent Coordinator or PM Coordinator runtimes when reading selected Mail, recording Decisions, executing SendMail Actions, or submitting technical runtime results.
 ---
 
 # Talgent Coordination Mailbox Runtime
@@ -13,9 +13,10 @@ Coordinator runtimes are bounded mailbox processors. The selected Mail, SourceFa
 2. Use `mailbox_read` for selected unread or required Mail. If selected Mail IDs are present, omitted `mail_ids` are scoped by the platform to that selected set.
 3. Read Mail subject/body as product-visible text. Do not infer user-facing decisions from runtime allocation rows, delivery IDs, audit IDs, or pod/session state.
 4. For noise, duplicates, FYI-only Mail, or already-resolved Mail, call `mailbox_update_state` with `handled`, `ignored`, or `closed` and a concise semantic reason.
-5. If another actor should know or act, include the decision in `coordination_submit_result`; Orchestrator validates and materializes Mail.
-6. Before ending, make sure every Mail you read has a reply or an appropriate delivery state update when no reply is needed.
-7. Call coordination_submit_result exactly once. A run is incomplete until that tool succeeds.
+5. Record each judgment with `decide`. Include the complete initial Action collection; use an empty collection when the judgment requires no side effect.
+6. Execute every selected SendMail Action with `coordination_send_mail`, passing the returned `decision_id` and `action_id`. Never invent either ID and never send ad hoc Mail.
+7. Before ending, make sure every Mail you read has a governed reply or an appropriate delivery state update when no reply is needed.
+8. Call `coordination_submit_result` exactly once for technical closure only. Do not repeat Decisions or Mail in that result.
 
 ## Scope Rules
 
