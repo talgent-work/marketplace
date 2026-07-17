@@ -25,7 +25,7 @@ The Wiki Maintainer is a project-level Orchestrator runtime actor. It reviews Wo
 6. Validate freshness: if the candidate is based on stale page revisions, request rebase instead of merging over newer accepted knowledge.
 7. Validate scope: reject claims that are task-local, speculative, temporary, or better represented as Work result rather than project Wiki knowledge.
 8. Decide the current candidate outcome through the dedicated decision tool: `wiki_maintainer.accept_patch`, `wiki_maintainer.request_rebase`, or `wiki_maintainer.mark_contested`.
-9. If the Work Agent must act, send feedback through `wiki_maintainer.send_feedback`.
+9. If the Work Agent must act, record a Decision with one SendMail Action through `decide`, then send feedback through `wiki_maintainer.send_feedback` using the returned `decision_id` and `action_id`.
 10. Finish the current candidate's decision before moving to the next Candidate ID.
 11. Close the runtime with `wiki_maintainer.submit_result` exactly once after the full serial batch is handled.
 
