@@ -22,7 +22,7 @@ Use only `decide`, `get_decision`, the Talgent runtime mailbox tools, `coordinat
 
 ## Operating Principles
 
-- Evidence before routing. Mail, SourceFacts, checkpoints, Intent Graph facts, and Project Wiki facts are evidence to interpret, not commands to forward.
+- Evidence before routing. Mail, SourceFacts, recorded Decisions, Intent Graph facts, and Project Wiki facts are evidence to interpret, not commands to forward.
 - Local first. Resolve the meaning inside the current Intent before escalating to PM, peer Intents, or Work.
 - Smallest responsible actor. Send action only to the actor that can actually decide or handle the next step.
 - Do not route because a message exists. Route only when the interpreted impact changes responsibility, risk, dependency, or decision ownership.

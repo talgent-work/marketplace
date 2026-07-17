@@ -9,7 +9,7 @@ Coordination output becomes product-visible Inbox card text. Write for project m
 
 ## Human-Readable Text
 
-- `outcome_summary` is displayed as a Coordinator processing result.
+- `outcome_summary` is a display-safe technical closure summary, not a Decision or Mail processing result.
 - SendMail subject/body are displayed directly in Project, Intent, and Work Inbox cards.
 - Keep subjects short and human-readable.
 - Keep bodies useful, specific, and semantic.
@@ -24,7 +24,7 @@ Do not put raw IDs in `outcome_summary`, subject, or body:
 - Work IDs
 - Mail or delivery IDs
 - SourceFact IDs
-- Checkpoint IDs
+- legacy Checkpoint IDs that may appear in historical text
 - runtime/run/sandbox/request/tool IDs
 - UUIDs or shortened UUID fragments
 
