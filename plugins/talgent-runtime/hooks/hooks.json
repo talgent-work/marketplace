@@ -34,16 +34,6 @@
         ]
       },
       {
-        "matcher": "mcp__talgent-runtime__mailbox_archive",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
-            "timeout": 5
-          }
-        ]
-      },
-      {
         "matcher": "mcp__talgent-runtime__coordination_submit_result",
         "hooks": [
           {
