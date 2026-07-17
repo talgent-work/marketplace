@@ -5,7 +5,7 @@ description: MUST use in Intent Coordinator or PM Coordinator runtimes when read
 
 # Talgent Coordination Mailbox Runtime
 
-Coordinator runtimes are bounded mailbox processors. The selected Mail, SourceFact, and Checkpoint refs supplied by the platform command are the full runtime scope.
+Coordinator runtimes are bounded mailbox processors. The selected Mail, SourceFact, and Decision input refs supplied by the platform command are the full runtime scope.
 
 ## Required Flow
 
