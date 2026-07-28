@@ -1,12 +1,12 @@
 {
-  "description": "Talgent runtime hook telemetry plus Work turn-end Knowledge review.",
+  "description": "Talgent runtime hook telemetry plus Work Candidate finalization enforcement.",
   "hooks": {
     "Stop": [
       {
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "You are a lightweight Talgent Project Wiki review reminder for a Work Agent Stop hook. Context: $ARGUMENTS\n\nDefault to {\"ok\": true}. Return {\"ok\": false, \"reason\": \"...\"} only when the just-finished turn clearly produced durable project knowledge or found stale, missing, contradictory, incomplete, or duplicate Wiki knowledge, and the Work Agent appears to have skipped the turn-end Knowledge review. The reason must be a reminder to consider whether knowledge.submit_patch, knowledge.record_observation, or knowledge.submit_noop is appropriate. Do not require ingest every turn, do not require no-op when no Knowledge obligation is open, and do not ask the agent to wait for Work end or archive.",
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/check-candidate-finalization.mjs\"",
             "timeout": 20
           }
         ]
