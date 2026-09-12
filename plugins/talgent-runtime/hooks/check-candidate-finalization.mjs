@@ -5,21 +5,28 @@ for await (const _chunk of process.stdin) {
   // Drain the hook payload so a large Stop input cannot block the caller.
 }
 
-const runtimePurpose = clean(process.env.TALGENT_RUNTIME_PURPOSE);
-if (runtimePurpose && runtimePurpose !== "work" && runtimePurpose !== "normal") {
-  process.exit(0);
-}
-
-const projectId = clean(process.env.TALGENT_PROJECT_ID);
-const workId = clean(process.env.TALGENT_WORK_ID);
-const projectAssetAddress = clean(process.env.TALGENT_PROJECT_ASSET_ADDR);
+const agentSessionId = clean(process.env.TALGENT_AGENT_SESSION_ID);
+const executionId = clean(process.env.TALGENT_EXECUTION_ID);
+const proof = clean(process.env.TALGENT_EXECUTION_PROOF);
+const controlplaneAddress = clean(process.env.TALGENT_CONTROLPLANE_ADDRESS);
+const orchestratorAddress = clean(process.env.TALGENT_ORCHESTRATOR_ADDRESS);
+let projectId = "";
 
 try {
-  if (!projectId || !workId || !projectAssetAddress) {
-    throw new Error("Candidate finalization check is missing Project Knowledge runtime configuration");
+  if (!agentSessionId || !executionId || !proof || !controlplaneAddress || !orchestratorAddress) {
+    throw new Error("Candidate finalization check is missing native Session configuration");
   }
-
-  const candidates = await listAllCandidates(projectAssetAddress, projectId, workId);
+  const response = await fetch(`${orchestratorAddress.replace(/\/+$/, "")}/orchestrator.v1.MailboxService/GetExecutionContext`, {
+    method: "POST", headers: requestHeaders(), body: "{}", signal: AbortSignal.timeout(5000),
+  });
+  if (!response.ok) throw new Error(`GetExecutionContext returned HTTP ${response.status}`);
+  const scope = await response.json();
+  if (scope?.sessionId !== agentSessionId || scope?.executionId !== executionId || !clean(scope?.projectId)) {
+    throw new Error("Candidate finalization scope does not match the native Session");
+  }
+  if (scope.purpose !== "work") process.exit(0);
+  projectId = scope.projectId;
+  const candidates = await listAllCandidates(controlplaneAddress, projectId, agentSessionId);
   const blockingCandidate = candidates.find((candidate) =>
     blockingState(candidate?.state) !== ""
   );
@@ -34,7 +41,7 @@ try {
   logFailedOpen(error);
 }
 
-async function listAllCandidates(address, currentProjectId, currentWorkId) {
+async function listAllCandidates(address, currentProjectId, currentAgentSessionId) {
   const candidates = [];
   const seenPageTokens = new Set();
   let pageToken = "";
@@ -42,7 +49,7 @@ async function listAllCandidates(address, currentProjectId, currentWorkId) {
   for (;;) {
     const body = {
       projectId: currentProjectId,
-      workId: currentWorkId,
+      agentSessionId: currentAgentSessionId,
       pageSize: 50,
       ...(pageToken ? { pageToken } : {}),
     };
@@ -85,25 +92,10 @@ function requestHeaders() {
   return {
     "content-type": "application/json",
     "connect-protocol-version": "1",
-    "x-talgent-service-id": "executor",
-    ...optionalHeader(
-      "x-talgent-runtime-instance-id",
-      process.env.TALGENT_RUNTIME_INSTANCE_ID,
-    ),
-    ...optionalHeader(
-      "x-talgent-runtime-purpose",
-      process.env.TALGENT_RUNTIME_PURPOSE,
-    ),
-    ...optionalHeader(
-      "x-talgent-runtime-owner-ref",
-      process.env.TALGENT_RUNTIME_OWNER_REF,
-    ),
+    "x-talgent-session-id": agentSessionId,
+    "x-talgent-execution-id": executionId,
+    "x-talgent-execution-proof": proof,
   };
-}
-
-function optionalHeader(name, value) {
-  const normalized = clean(value);
-  return normalized ? { [name]: normalized } : {};
 }
 
 function blockingState(value) {
@@ -136,7 +128,7 @@ function logFailedOpen(error) {
     level: "warn",
     event: "candidate_finalization_check_failed_open",
     projectId,
-    workId,
+    agentSessionId,
     error: error instanceof Error ? error.message : String(error),
   };
 

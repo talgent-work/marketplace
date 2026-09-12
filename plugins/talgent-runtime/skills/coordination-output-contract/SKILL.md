@@ -28,7 +28,7 @@ Do not put raw IDs in `outcome_summary`, subject, or body:
 - runtime/run/sandbox/request/tool IDs
 - UUIDs or shortened UUID fragments
 
-Put provenance in structured fields such as `target_ref`, `related_intent_ids`, `related_work_ids`, or other platform-provided related fields. If only a raw ID is available, refer to the selected Intent, selected Work, current project, or Mail subject instead of quoting the ID.
+Put provenance in structured fields such as `target_ref`, `related_intent_ids`, `related_agent_session_ids`, or other platform-provided related fields. If only a raw ID is available, refer to the selected Intent, selected Work, current project, or Mail subject instead of quoting the ID.
 
 ## Decision and Action Contract
 

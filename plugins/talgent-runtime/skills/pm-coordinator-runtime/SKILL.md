@@ -40,7 +40,7 @@ The PM Coordinator processes one selected backlog window. It is project-aware bu
 - Use a zero-Action Decision or delivery-state handling for low-impact cc Mail when no recipient action is needed.
 - Record validated project-level awareness, clarification, or dispatch judgments with `decide`, then execute selected SendMail Actions with `coordination_send_mail`.
 - Keep recipient messages compact and useful for action.
-- Valid SendMail target refs are `work:<intent_id>:<work_id>` or `intent:<intent_id>`.
+- Valid SendMail target refs are `work:<intent_id>:<agent_session_id>` or `intent:<intent_id>`.
 - Do not use `actor:...`, `createdFrom`, delivery IDs, or mailbox actor refs as target refs.
 
 ## Boundary Rules

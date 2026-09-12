@@ -53,7 +53,7 @@ The Intent Coordinator is local-first. It interprets selected Intent Mail and de
 
 - Do not mutate Work goals, final results, acceptance basis, output format, protected side effects, or deliverables.
 - If a requested change affects those boundaries, treat it as advisory and ask for an Owner decision through Mail.
-- Valid SendMail target refs are `work:<work_id>` for a Work Agent in this Intent, or `pm:<project_id>` to ask the PM Coordinator for help.
+- Valid SendMail target refs are `work:<agent_session_id>` for a Work Agent in this Intent, or `pm:<project_id>` to ask the PM Coordinator for help.
 - Do not use `actor:...`, `createdFrom`, delivery IDs, or mailbox actor refs as target refs.
 
 ## Privacy Boundary
