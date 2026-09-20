@@ -1,5 +1,5 @@
 {
-  "description": "Talgent runtime hook telemetry plus Work Candidate finalization enforcement.",
+  "description": "Talgent Work Candidate finalization enforcement.",
   "hooks": {
     "Stop": [
       {
@@ -8,38 +8,6 @@
             "type": "command",
             "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/check-candidate-finalization.mjs\"",
             "timeout": 20
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Skill",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
-            "timeout": 5
-          }
-        ]
-      },
-      {
-        "matcher": "mcp__talgent-runtime__mailbox_read",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
-            "timeout": 5
-          }
-        ]
-      },
-      {
-        "matcher": "mcp__talgent-runtime__coordination_submit_result",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/record-skill-call.mjs\"",
-            "timeout": 5
           }
         ]
       }
