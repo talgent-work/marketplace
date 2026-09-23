@@ -49,7 +49,7 @@ async function listAllCandidates(address, currentProjectId, currentAgentSessionI
   for (;;) {
     const body = {
       projectId: currentProjectId,
-      agentSessionId: currentAgentSessionId,
+      agentWorkId: currentAgentSessionId,
       pageSize: 50,
       ...(pageToken ? { pageToken } : {}),
     };
