@@ -1,6 +1,6 @@
 {
   "name": "talgent-runtime",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Default Talgent Work runtime context: Work Agent and Intent workspace guidance with Candidate finalization enforcement.",
   "author": {
     "name": "Talgent"
