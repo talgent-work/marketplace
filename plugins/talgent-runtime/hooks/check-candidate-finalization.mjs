@@ -5,24 +5,23 @@ for await (const _chunk of process.stdin) {
   // Drain the hook payload so a large Stop input cannot block the caller.
 }
 
-const agentSessionId = clean(process.env.TALGENT_AGENT_SESSION_ID);
-const executionId = clean(process.env.TALGENT_EXECUTION_ID);
-const proof = clean(process.env.TALGENT_EXECUTION_PROOF);
+const agentSessionId = clean(process.env.TALGENT_WORK_ID);
+const credential = clean(process.env.TALGENT_WORK_CREDENTIAL);
 const controlplaneAddress = clean(process.env.TALGENT_CONTROLPLANE_ADDRESS);
 const orchestratorAddress = clean(process.env.TALGENT_ORCHESTRATOR_ADDRESS);
 let projectId = "";
 
 try {
-  if (!agentSessionId || !executionId || !proof || !controlplaneAddress || !orchestratorAddress) {
-    throw new Error("Candidate finalization check is missing native Session configuration");
+  if (!agentSessionId || !credential || !controlplaneAddress || !orchestratorAddress) {
+    throw new Error("Candidate finalization check is missing native Work configuration");
   }
   const response = await fetch(`${orchestratorAddress.replace(/\/+$/, "")}/orchestrator.v1.MailboxService/GetExecutionContext`, {
     method: "POST", headers: requestHeaders(), body: "{}", signal: AbortSignal.timeout(5000),
   });
   if (!response.ok) throw new Error(`GetExecutionContext returned HTTP ${response.status}`);
   const scope = await response.json();
-  if (scope?.sessionId !== agentSessionId || scope?.executionId !== executionId || !clean(scope?.projectId)) {
-    throw new Error("Candidate finalization scope does not match the native Session");
+  if (scope?.sessionId !== agentSessionId || !clean(scope?.projectId)) {
+    throw new Error("Candidate finalization scope does not match the native Work");
   }
   if (scope.purpose !== "work") process.exit(0);
   projectId = scope.projectId;
@@ -92,9 +91,8 @@ function requestHeaders() {
   return {
     "content-type": "application/json",
     "connect-protocol-version": "1",
-    "x-talgent-session-id": agentSessionId,
-    "x-talgent-execution-id": executionId,
-    "x-talgent-execution-proof": proof,
+    "x-talgent-work-id": agentSessionId,
+    "x-talgent-work-credential": credential,
   };
 }
 
