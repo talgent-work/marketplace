@@ -9,7 +9,11 @@ Plugin development sources live under `plugins/` in `jacexh/talgent`. Its
 `Publish Marketplace` workflow checks out this repository independently, copies
 changed plugin packages, increments their declared versions, and publishes a
 commit plus per-plugin version tags. It does not update a submodule pointer.
-Use the workflow's manual dry-run before an intentional publication.
+Manual dispatch selects a source branch, tag or commit and defaults to dry-run.
+Versions use only `x.y.z`: development/test publications increment `z`; changes
+merged to `master` increment `y` and reset `z` to zero. An already tested package
+is promoted to its formal version once; repeating the completed publication skips.
+The catalog commit and its `<plugin>-v<x.y.z>` tags are pushed atomically.
 
 The platform checks declared Plugin versions during incremental synchronization.
 Unchanged versions reuse the retained publication. Publish a new version when
