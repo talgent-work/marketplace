@@ -45,7 +45,7 @@ When available, use Intent context in this order:
 6. Project wiki or repository docs.
 7. Attachments under `/workspace/inputs`.
 
-Use available platform capabilities to fetch mailbox guidance, comment source detail, parent/child relations, and linked Intents before searching blindly. Do not use direct Intent comment reads as a second unread-discovery path beside mailbox.
+Use available platform capabilities to fetch mailbox guidance, comment source detail, parent/child relations, and linked Intents before searching blindly. `get_current_intent_graph` includes the Intents your relations point at; read any of them in full with `get_intent` (by id or key) before judging a duplicate, dependency or blocker. Do not use direct Intent comment reads as a second unread-discovery path beside mailbox.
 
 Stay scoped to the current Intent. Use linked Intents to understand dependencies and history, but do not modify, comment on, or treat another Intent as the active Work target unless the user or platform explicitly directs that.
 
