@@ -1,11 +1,11 @@
 ---
 name: wiki-maintainer-runtime
-description: MUST use in Wiki Maintainer runtimes to review Knowledge candidates, resolve ingest conflicts, and send Maintainer feedback to Work inbox.
+description: MUST use in Wiki Maintainer runtimes to review Knowledge candidates, resolve ingest conflicts, and mail feedback to the Candidate's Intent.
 ---
 
 # Talgent Wiki Maintainer Runtime
 
-The Wiki Maintainer is a project-level Orchestrator runtime actor. It reviews Work-submitted Project Wiki Knowledge candidates asynchronously and keeps the local Wiki asset coherent.
+The Wiki Maintainer is the Project's Digital Employee for Project Wiki review. Mail to its mailbox wakes it for the next Candidate awaiting review, and each of its Works reviews exactly one Candidate.
 
 ## Review Principles
 
@@ -15,19 +15,16 @@ The Wiki Maintainer is a project-level Orchestrator runtime actor. It reviews Wo
 - Prefer no change over weak knowledge. The Wiki should stay empty on a topic rather than contain unsupported claims.
 - Treat the Wiki as a project asset: concise, durable, queryable, and tied to evidence.
 
-## Review Position SOP
+## Review SOP
 
-1. Treat the single Candidate ID and selected Mail in the runtime prompt as one project-level review position.
-2. Read the selected Collaboration Mailbox input with `mailbox_check` and `mailbox_read`.
-3. Call `wiki_maintainer.get_candidate` with that `candidate_id` to inspect candidate metadata: producing AgentSession, owning Intent, current Revision, and Raw Source refs.
-4. Validate evidence: every durable claim must point to displayable Raw Sources with stable identity and digest.
-5. Validate Candidate shape: semantic content, evidence, applicability scope, and source references must form one complete Revision.
-6. Validate freshness: if evidence or applicability is unclear, return the Candidate for author response instead of editing it during review.
-7. Validate scope: reject claims that are task-local, speculative, temporary, or better represented as Work result rather than project Wiki knowledge.
-8. Persist the current Candidate judgment with `decide`, select the matching Action, then execute it through `wiki_maintainer.review_candidate`.
-9. If the Work Agent must act, record a Decision with `candidate:<candidate_id>` in `input_refs` and one SendMail Action through `decide`, then send feedback through `wiki_maintainer.send_feedback` using the returned `decision_id` and `action_id` and the Candidate’s `intent_id` and `agent_session_id`. The selected wakeup Mail may come from a different source; use the Candidate metadata to identify the feedback recipient.
-10. Finish the current Candidate Decision and matching Action before closing the review position.
-11. Close the runtime with `wiki_maintainer.submit_result` exactly once after the selected review position is handled.
+1. Read the Mail about this Candidate with `mailbox_check` and `mailbox_read`.
+2. Call `wiki_maintainer.get_candidate` to inspect Candidate metadata: producing Work, owning Intent, current Revision, and Raw Source refs.
+3. Validate evidence: every durable claim must point to displayable Raw Sources with stable identity and digest.
+4. Validate Candidate shape: semantic content, evidence, applicability scope, and source references must form one complete Revision.
+5. Validate freshness: if evidence or applicability is unclear, return the Candidate for author response instead of editing it during review.
+6. Validate scope: reject claims that are task-local, speculative, temporary, or better represented as Work result rather than project Wiki knowledge.
+7. Persist the Candidate judgment with `decide`, select the matching Action, then execute it through `wiki_maintainer.review_candidate`.
+8. If the Work Agent must act, record a Decision with `candidate:<candidate_id>` in `input_refs` and one SendMail Action through `decide`, then call `mailbox_send` with the returned `decision_id` and `action_id`, `to: ["intent:<the Candidate's intentId>"]`, and the Candidate's `agentWorkId` in `related_agent_work_ids`. Use the Candidate metadata, not the Mail that woke you, to address the feedback.
 
 ## Conflict Handling
 
@@ -39,7 +36,7 @@ The Wiki Maintainer is a project-level Orchestrator runtime actor. It reviews Wo
 
 ## Feedback Rules
 
-- Maintainer feedback is sent through Wiki Maintainer outbox to the Work Agent inbox.
+- Feedback is Mail to the Candidate's Intent Mailbox; it wakes that Intent's Work Agent.
 - Feedback should be short, actionable, and tied to candidate provenance.
 - Use feedback for rejection, missing sources, author response, conflict explanation, or request for a narrower complete Revision.
 - Do not create project-asset outbound messages, public Intent comments, or PM Coordinator detours for ordinary Wiki review outcomes.
