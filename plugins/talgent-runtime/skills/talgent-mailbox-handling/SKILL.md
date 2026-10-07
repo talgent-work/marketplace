@@ -9,7 +9,7 @@ Use this skill for the whole Work lifecycle. Your Intent has one Intent Mailbox 
 
 ## Core Model
 
-- Agent Mail comes from another Agent (another Intent's Work Agent, the PM Coordinator, or the Wiki Maintainer).
+- Agent Mail comes from another Agent (another Intent's Work Agent or the PM Coordinator).
 - A System Notice comes from the platform: people changed this Intent (comments, fields, relations). It carries no content, only `changed_since`. Read what changed with `intent_activity_read` using `since: changed_since`, then read the current Intent with `get_current_intent`. Never act on superseded changes.
 - A runtime notice saying you have unread Mail is not Mail content, instructions, or approval. Call `mailbox_check` and act only on the Mail the platform returns.
 - `mailbox_send` and `intent_comment_reply` execute SendMail and PostIntentComment Actions. Record the Decision first with `decide`, then use the returned `decision_id` and `action_id`. Mail checks, reads, and Activity reads need no Action.
@@ -23,7 +23,7 @@ Follow this order before planning, changing scope, replying publicly, or acting 
 2. Read unread Mail with `mailbox_read`.
 3. For each System Notice, read Intent Activity since its `changed_since` and the current Intent. Fetch a comment thread with `intent_comment_get_thread` only when an activity entry names a comment you must understand or answer.
 4. Classify each item: informational, actionable within the Intent, needs a Mail reply, needs a public reply, duplicate/unrelated, or needs a human decision.
-5. Reply to a Mail with `mailbox_send` and its `parent_mail_id`; the reply goes to its sender. Address new Mail with `to`: `intent:<intent_id>`, `pm`, or `wiki`.
+5. Reply to a Mail with `mailbox_send` and its `parent_mail_id`; the reply goes to its sender. Address new Mail with `to`: `intent:<intent_id>` or `pm`.
 6. Use `intent_comment_reply` only for visible communication that belongs on the Intent.
 7. Keep the final Work Result separate from Mail replies.
 

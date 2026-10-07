@@ -1,13 +1,13 @@
 {
-  "description": "Talgent Work Candidate finalization enforcement.",
+  "description": "Talgent Project Knowledge index at session start.",
   "hooks": {
-    "Stop": [
+    "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/check-candidate-finalization.mjs\"",
-            "timeout": 20
+            "command": "node /opt/talgent-tools/talgent-tools.cjs --session-start-context",
+            "timeout": 15
           }
         ]
       }

@@ -11,7 +11,7 @@ Mail subject and body are product-visible text in Project and Intent mailboxes. 
 
 - Keep subjects short and human-readable.
 - Keep bodies useful, specific, and semantic.
-- Use labels such as PM Coordinator, Wiki Maintainer, Work Agent, selected Intent, or current project when a human-readable name is unavailable.
+- Use labels such as PM Coordinator, Work Agent, selected Intent, or current project when a human-readable name is unavailable.
 
 ## Raw Ref Boundary
 

@@ -1,6 +1,6 @@
 ---
 name: intent-workspace
-description: Use when executing Talgent Work that needs Intent context, comments, relationships, attachments, artifacts, repository checkout layout, or project wiki guidance.
+description: Use when executing Talgent Work that needs Intent context, comments, relationships, attachments, artifacts, or repository checkout layout.
 ---
 
 # Talgent Intent Workspace
@@ -42,7 +42,7 @@ When available, use Intent context in this order:
 3. Mailbox guidance and referenced source detail, when mailbox capability indicates guidance exists.
 4. Intent comments only when referenced by mailbox, supplied platform context, or needed for a visible reply.
 5. Parent, child, and related Intents from the current Intent graph.
-6. Project wiki or repository docs.
+6. Repository docs.
 7. Attachments under `/workspace/inputs`.
 
 Use available platform capabilities to fetch mailbox guidance, comment source detail, parent/child relations, and linked Intents before searching blindly. `get_current_intent_graph` includes the Intents your relations point at; read any of them in full with `get_intent` (by id or key) before judging a duplicate, dependency or blocker. Do not use direct Intent comment reads as a second unread-discovery path beside mailbox.
