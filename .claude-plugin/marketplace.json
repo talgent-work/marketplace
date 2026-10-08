@@ -13,12 +13,12 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent-runtime",
-        "ref": "talgent-runtime-v0.3.1"
+        "ref": "talgent-runtime-v0.4.0"
       },
       "category": "Internal Systems",
       "defaultEnabled": true,
       "description": "Default Talgent Work runtime context: activates a Work executor agent, Intent workspace guidance, and lightweight plugin hook telemetry.",
-      "version": "0.3.1"
+      "version": "0.4.0"
     },
     {
       "name": "talgent-digital-employees",
