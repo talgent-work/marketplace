@@ -27,7 +27,7 @@ The PM Coordinator is the Project's Digital Employee for project-level coordinat
 
 ## Dispatch Rules
 
-- Record the judgment with `decide`, then execute the selected SendMail Action with `mailbox_send`.
+- Record the judgment with `decide`, naming the Mail it rests on as inputs, then execute the selected SendMail Action with `mailbox_reply` (a declared reply) or `mailbox_send` (new Mail).
 - Address an Intent with `to: ["intent:<intent_id>"]`; its Work Agent reads that Intent Mailbox and is woken by the Mail.
 - A human decision goes to the affected Intent: its Work Agent asks its Intent Assignee.
 - Keep recipient messages compact and useful for action.

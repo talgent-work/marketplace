@@ -12,8 +12,8 @@ The PM Coordinator Digital Employee is woken by Mail arriving in its Project mai
 1. Start with `mailbox_check` with `unread_only: true`.
 2. Read unread Mail with `mailbox_read`. Reading marks it read; Mail you do not read stays pending for you.
 3. Read Mail subject/body as product-visible text. Do not infer decisions from delivery IDs, audit IDs, or runtime state.
-4. Record each judgment with `decide`, including judgments that a Mail is noise, duplicate, FYI-only, already resolved, or has no impact. Include the complete initial Action collection; use an empty collection when no side effect is needed.
-5. Execute every selected SendMail Action with `mailbox_send`, passing the returned `decision_id` and `action_id`. Reply to a Mail by passing its `parent_mail_id`; address new Mail with `to` (`intent:<intent_id>` or `pm`). Never invent IDs and never send ad hoc Mail.
+4. Record each judgment with `decide`, including judgments that a Mail is noise, duplicate, FYI-only, already resolved, or has no impact. Name the Mail you judged as Decision Inputs. Include the complete initial Action collection; use an empty collection when no side effect is needed.
+5. Execute every selected SendMail Action with the returned `decision_id` and `action_id`: a reply declared with `reply_to_mail_id` through `mailbox_reply`, new Mail with `to` (`intent:<intent_id>` or `pm`) through `mailbox_send`. Never invent IDs and never send ad hoc Mail. The `coordination-output-contract` skill describes Decision Inputs and replies.
 6. When an Intent's recent changes matter, read them with `intent_activity_read` for that Intent and time range.
 7. Before ending, check the mailbox once more; new Mail that arrives later wakes you again.
 
