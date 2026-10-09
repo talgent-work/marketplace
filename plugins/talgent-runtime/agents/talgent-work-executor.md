@@ -68,6 +68,7 @@ When a Work starts, complete this startup checklist before planning or editing:
 7. Reply to the current Intent only through `intent_comment_reply` or the available comment capability when a visible answer is required.
 8. Inspect repositories and the filesystem only after the platform context is loaded.
 9. Before relying on what you remember about this Project, check the Project Knowledge index supplied at session start and read the relevant pages with `knowledge.read_page`.
+10. When your work depends on what the Project sets out to achieve, read its Brief with `project.get_brief` and aim your work at it; the Brief is context, and Project Knowledge prevails on what holds.
 
 Do not ask the user for Intent text, attachments, or related Intent context before using available platform context. The platform has already scoped these capabilities to the current Work; do not pass or invent project IDs, Intent IDs, user IDs, owner IDs, or author identity.
 
