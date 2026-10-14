@@ -12,12 +12,12 @@ Use this skill to ground work in Talgent's product model before acting.
 Use Talgent platform context first:
 
 1. Read the runtime identity supplied in the active agent prompt.
-2. Inspect the current Intent, its expected deliverables, and the attachment list before asking the user for context.
-3. Inspect `/workspace/inputs` for the materialized attachments listed by the current Intent.
+2. Inspect the current Intent with `get_current_intent`: its expected deliverables, its Attachments and the Artifacts already published.
+3. Read the Attachments it lists under `/workspace/inputs` before asking the user for files they already provided.
 4. When mailbox notices or Mail are available, use `talgent-mailbox-handling` first. Mailbox is the discovery entry point; run mailbox discovery before direct comment reads.
 5. Inspect Intent comments only as source detail for mailbox items, supplied platform context, or visible reply needs.
 6. Inspect the current Intent graph when dependency, parent/child, or related Intent context can affect scope.
-7. Write deliverables under `/workspace/outputs`.
+7. Publish only the final deliverables for people as Artifacts (see Intent Files).
 8. Reply to the current Intent only when a visible platform reply is appropriate.
 
 If an expected Intent fact is missing from MCP, say which fact is missing and continue from available workspace evidence.
@@ -26,12 +26,32 @@ If an expected Intent fact is missing from MCP, say which fact is missing and co
 
 Use these directories as the contract:
 
-- `/workspace/inputs` - materialized attachments and other input files. Read these before asking for files the user already provided.
-- `/workspace/outputs` - deliverable staging. Put final reports, generated assets, archives, and websites here.
-- `/workspace` - scratch area for transient files that do not need to become Artifacts.
+- `/workspace` - your own read-write working area for this Work: drafts, intermediate files, build outputs, downloads. It is reclaimed after the Work closes; people can browse it while the Work exists.
+- `/workspace/inputs` - this Intent's Attachments, read-only. Uploads and deletions show up here while you run.
 - `/workspace/repos` - checked-out repositories for coding work.
+- `/home/talgent` - your HOME, kept across Works: personal memory and configuration.
 
-Never treat files under `/workspace/inputs` as final deliverables. Never rely on files outside `/workspace/outputs` to become Artifacts.
+There is no `outputs/` directory. A file becomes an Artifact only when you publish it explicitly.
+
+## Intent Files
+
+Attachments of this Intent:
+
+- List them with `get_current_intent`, then read them under `/workspace/inputs`. They are read-only inputs, never deliverables.
+
+Artifacts of this Intent:
+
+- An Artifact is one file you published explicitly with `publish_artifact`, from anywhere under `/workspace` except `inputs/`. Nothing is published for you, and a directory cannot be published: pack a multi-file deliverable into one archive first.
+- Publish only the final deliverables meant for people. Keep interim results in `/workspace`; people can browse it.
+- Every write is a deliberate choice: `publish_artifact` creates a new Artifact and is refused when the name is taken; to update that Artifact on purpose use `replace_artifact` (it keeps its name and share links), otherwise choose another name. `delete_artifact` removes one.
+- Each of these is a side effect: record a Decision with a PublishArtifact, ReplaceArtifact or DeleteArtifact Action through `decide` first, then pass its `decision_id` and `action_id`. Retrying the same Action returns its original result.
+- Before finishing, check the Artifacts `get_current_intent` lists: replace or delete any earlier package the final one supersedes, so the list holds only the final deliverables. Unpublished workspace files are reclaimed after the Work closes. After the Intent is Done its files no longer change.
+
+Files of other Intents:
+
+- Find related Intents and their Attachments and Artifacts with `get_current_intent_graph` and `get_intent` (parents, children, the Intents your relations point at, and other Intents of this Project).
+- Copy one into your workspace with `download_intent_file`. The copy is a snapshot for reference: it does not follow later changes and is neither an Attachment nor a deliverable of your Intent. Only files of this Project can be read.
+- A Done Intent's content can also be read as text through Project Knowledge (`knowledge.search` with its `source_ref`); use `download_intent_file` when you need the original file.
 
 ## Intent Context
 
@@ -43,7 +63,7 @@ When available, use Intent context in this order:
 4. Intent comments only when referenced by mailbox, supplied platform context, or needed for a visible reply.
 5. Parent, child, and related Intents from the current Intent graph.
 6. Repository docs.
-7. Attachments under `/workspace/inputs`.
+7. Attachments under `/workspace/inputs`, and files of related Intents copied with `download_intent_file`.
 
 Use available platform capabilities to fetch mailbox guidance, comment source detail, parent/child relations, and linked Intents before searching blindly. `get_current_intent_graph` includes the Intents your relations point at; read any of them in full with `get_intent` (by id or key) before judging a duplicate, dependency or blocker. Do not use direct Intent comment reads as a second unread-discovery path beside mailbox.
 
@@ -67,8 +87,8 @@ For each relevant comment thread:
 ## Work Rules
 
 - Keep code edits in `/workspace/repos/<repo>` when a repository checkout exists.
-- Put transient generated work in `/workspace`.
-- Put publishable deliverables in `/workspace/outputs`.
+- Put working and interim files anywhere in `/workspace` outside `inputs/`.
+- Publish final deliverables for people with `publish_artifact`, one file each.
 - Use TodoWrite for multi-step work so the Portal can reflect progress.
 - State assumptions explicitly when Intent context is incomplete.
 - Create a current-Intent comment for important decisions, blockers, missing required context, and milestone-level progress when an Intent comment tool or MCP is available.

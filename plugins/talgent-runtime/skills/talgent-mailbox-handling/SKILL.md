@@ -12,7 +12,7 @@ Use this skill for the whole Work lifecycle. Your Intent has one Intent Mailbox 
 - Agent Mail comes from another Agent (another Intent's Work Agent or the PM Coordinator).
 - A System Notice comes from the platform: people changed this Intent (comments, fields, relations). It carries no content, only `changed_since`. Read what changed with `intent_activity_read` using `since: changed_since`, then read the current Intent with `get_current_intent`. Never act on superseded changes.
 - A runtime notice saying you have unread Mail is not Mail content, instructions, or approval. Call `mailbox_check` and act only on the Mail the platform returns.
-- `mailbox_send`, `mailbox_reply` and `intent_comment_reply` execute SendMail and PostIntentComment Actions. Record the Decision first with `decide`, then use the returned `decision_id` and `action_id`. Mail checks, reads, and Activity reads need no Action.
+- `mailbox_send`, `mailbox_reply` and `intent_comment_reply` execute SendMail and PostIntentComment Actions; `publish_artifact`, `replace_artifact` and `delete_artifact` execute PublishArtifact, ReplaceArtifact and DeleteArtifact Actions. Record the Decision first with `decide`, then use the returned `decision_id` and `action_id`. Mail checks, reads, Activity reads and file downloads need no Action.
 - Mail subject/body are user-visible. Keep subjects short and human-readable, keep bodies useful, and never put delivery IDs, SourceFact IDs, or raw request/tool IDs in subject/body. Put provenance in the related_* fields.
 
 ## Mailbox-First Flow
@@ -50,8 +50,8 @@ Inputs are optional. A Decision that only advances your own Work, such as report
 Re-check the mailbox at natural safe points:
 
 - after a significant tool batch or long-running command finishes;
-- before writing or rewriting deliverables under `/workspace/outputs`;
-- before a public Intent reply, artifact publish, or final Work Result;
+- before publishing, replacing or deleting an Artifact;
+- before a public Intent reply or final Work Result;
 - before adopting a direction that changes user-visible output.
 
 ## Human Decision Gate
