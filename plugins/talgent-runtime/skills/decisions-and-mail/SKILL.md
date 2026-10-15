@@ -1,50 +1,62 @@
 ---
 name: decisions-and-mail
-description: Use before calling `decide` or writing Mail - which Action each side effect is, which facts a Decision names as inputs, reply versus new Mail, and how Mail text reads to people.
+description: Decisions, Actions and Mail - deciding, pursuing and reporting an Action's purpose, citing the Assignee's confirmation, settling input by reply, Decision or acknowledgement, plain Mail versus Mail for a purpose, notifying affected Intents, and Mail text.
 ---
 
 # Decisions and Mail
 
-Every product side effect is an Action of a recorded Decision. Call `decide` with the judgment, the inputs it rests on and the complete list of Actions it selects; then pass the returned `decision_id` and `action_id` to the tool that executes each Action. Retrying the same Action returns its first result. Report an Action as done only from that tool's result.
+People read your Decisions to see what you judged and why. Record a Decision for **judgment**: the reasoning behind a change to a product entity, or a judgment that matters on its own, such as switching approach midway. Input you only take note of is acknowledged instead.
 
-A judgment with no side effect is still a Decision, with an empty Action list: noise, duplicates, FYI and already-resolved items get one too.
+## Decide
 
-Reads take no Decision: mailbox checks and reads, Intent Activity, Intent and graph queries, Project Knowledge, the Project Brief and file downloads.
+Call `decide` with the conclusion, a short rationale, the facts it rests on as inputs, and the Actions it sets out to achieve. An **Action is a purpose**, in your words — "Agree the Agreement with the Assignee", "Tell the client team the API moved" — never a single tool call. The same purpose pursued by other means stays one Action; a different purpose takes a new Decision. A Decision with no Actions is finished at once.
 
-## Actions
+**Inputs** name the facts the judgment actually rests on, so people can trace why you acted:
 
-| Action | Executed by |
-| --- | --- |
-| SendMail | `mailbox_reply` for a declared reply, `mailbox_send` for new Mail |
-| PostIntentComment | `intent_comment_reply` |
-| PublishArtifact, ReplaceArtifact, DeleteArtifact | `publish_artifact`, `replace_artifact`, `delete_artifact` |
-| AdvanceIntentStatus | `advance_intent_status` |
-| ReviseIntentAgreement | `revise_intent_agreement` |
-| DeclareCriterionMet, WithdrawCriterionDeclaration | `declare_criterion_met`, `withdraw_criterion_declaration` |
-| CreateChildIntent, AddIntentRelation | `create_child_intent`, `add_intent_relation` |
+- `mail` — an Agent Mail you received or sent (`mail_id`).
+- `system_notice` — a System Notice you received (`mail_id`); the human changes it covers come with it.
+- `source_fact` — one human change covered by your System Notice (`source_fact_id`).
+- `work_human_input` — a message to your Work, a human's answer to your `AskUserQuestion`, or the reason they gave for declining: the `ref` in its `<talgent-human-input>` tag.
+- `intent_comment`, `project_knowledge` — a comment ID, Knowledge `topic_id` or `source_ref`, with `quote`: the exact passage you relied on, since the original may change. Only these two take a quote.
 
-Your runtime offers the tools of the Actions you may take.
+Inputs are optional; a Decision that only advances your own Work may name none.
 
-## Decision Inputs
+## Pursue and Report
 
-Name in `decide.inputs` the facts this judgment actually rests on, so people can trace why you acted. Name only what you relied on; the platform never guesses, and a fact you read but did not rely on is not an input.
+Every call that changes a product entity names its open Action with `decision_id` and `action_id`: status, Agreement and criteria, labels, relations, parents, new Intents, comments and Artifacts.
 
-- `mail` — an Agent Mail you received or sent (its `mail_id`).
-- `system_notice` — a System Notice you received (its `mail_id`); the human changes it covers are recorded with it.
-- `source_fact` — one human change covered by your System Notice (its `source_fact_id`).
-- `work_human_input` — a human input delivered to your Work: a message, a human's answer to your `AskUserQuestion`, or the reason a human gave for declining your request. Use the `ref` in its `<talgent-human-input>` tag.
-- `intent_comment` and `project_knowledge` — a comment ID, Knowledge `topic_id` or `source_ref`, with `quote`: the exact passage you relied on, because the original may change later. Only these two kinds take a quote.
+- Make as many calls as the purpose needs: retry after a failure, or change means. Each call is recorded against the Action.
+- A refused call returns its owner's reason: correct what it names and call again, or judge the purpose unreachable.
+- When the purpose is achieved or cannot be, call `report_action_outcome` with `succeeded` true or false and a one-line `account` of what the effects show. Failure may be reported before any call. You alone report an Action, once; afterwards it takes no further call.
+- An Action may stay open across Turns while it waits, for example on an answer. Before each Turn ends you are shown your open Actions; `list_open_actions` shows them any time.
+- A retried command meets its own semantics: creating a taken name is refused, replacing writes again, deleting what is gone succeeds. Creating an Intent twice creates two, so read the graph before retrying one.
 
-Inputs are optional. A Decision that only advances your own Work, such as reporting completion, may name none; it is shown as advancing your Work.
+Done when every Action whose purpose has ended is reported.
 
-## Reply or New Mail
+## Confirmation
 
-- To answer a Mail, declare `reply_to_mail_id` on its SendMail Action in `decide`, then execute it with `mailbox_reply`. The replied Mail becomes an input of the Decision automatically; the platform links the thread and sends the reply only to that Mail's sender.
-- To tell anyone else — another Intent, the PM Coordinator, or the sender plus others — send new Mail with `mailbox_send` and `to`: `intent:<intent_id>` or `pm`.
-- A System Notice has no sender and cannot be replied to.
+A change that needs the Assignee's approval carries their answer: pass the `ref` of their answer to your `AskUserQuestion` as `confirmation_input_id`. The platform checks it is the Assignee's answer in this Work. One answer backs every change it approved, such as the Agreement and the move to Ready; ask again for anything it did not cover.
+
+## Settling Input
+
+Every Mail and System Notice you read is **settled** one of three ways:
+
+- **Reply** with `mailbox_reply` and `reply_to_mail_id` when it asks you something. The reply goes to its sender, in its thread, and needs no Decision.
+- **Decide**, naming it as an input, when it leads you to a change or a judgment that matters.
+- **Acknowledge** with `mailbox_acknowledge` when you only take note: informational, duplicate, unrelated or already resolved.
+
+People see read input that is not settled as having no follow-up. An acknowledged Mail can still be replied to or named as an input later. A System Notice has no sender; settle it by deciding or acknowledging.
+
+## Plain Mail and Mail for a Purpose
+
+- **Plain Mail** — a question, a factual answer, a routine report — goes out with `mailbox_send` alone.
+- **Mail for a purpose** names the open Action it serves (`decision_id` with `action_id`), so the recipient's later judgment links back to yours.
+- Address new Mail with `to`: `intent:<intent_id>` for an Intent's Work Agent, `pm` for the PM Coordinator.
+
+## Notifying Affected Intents
+
+A change that touches other Intents — a relation added or removed, labels changed, a parent set, a new Intent, or a scope, interface, approach, timing or deliverable they build on — is followed by Mail to each affected Intent saying what changed, why, and what it may need to revisit, as Mail for the same Action. A Work Agent finds them in `get_current_intent_graph` and reads each one whose work could rest on the change with `get_intent`; the PM Coordinator mails the Intents its change names. The platform leaves this to you; their people and Agents depend on it.
 
 ## Mail Text
 
-Subject and body are what project members read in their mailboxes. Write a short, human-readable subject and a specific, useful body that states the reason, who it affects and the next action.
-
-Keep provenance in the structured fields (`to`, `related_intent_ids`, `related_agent_work_ids`, `related_source_fact_ids`) and refer to things by name in the text: the Intent's key or title, the Mail's subject, "the PM Coordinator", "this Project". Raw references stay out of the text: Project, Intent, Work, Mail, delivery and SourceFact IDs, runtime, sandbox, request and tool IDs, and any UUID or fragment of one.
+Subject and body are what project members read. Write a short, human-readable subject and a specific body: the reason, who it affects, the next step. Name things as people know them — an Intent's key or title, a Mail's subject, "the PM Coordinator", "this Project" — and carry identifiers in the structured fields (`to`, `related_intent_ids`, `related_agent_work_ids`, `related_source_fact_ids`), which keep the text free of IDs and UUIDs.

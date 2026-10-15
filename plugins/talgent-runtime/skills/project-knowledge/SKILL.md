@@ -1,6 +1,6 @@
 ---
 name: project-knowledge
-description: Use when a Work or the PM Coordinator needs this Project's confirmed knowledge — how things are built, decided, deployed or named — or must weigh it against personal memory.
+description: Project Knowledge - this Project's confirmed knowledge of how things are built, decided, deployed or named, how to read and cite it, and how it outranks personal memory.
 ---
 
 # Talgent Project Knowledge
@@ -19,7 +19,7 @@ Project Knowledge is this Project's confirmed knowledge. The platform derives it
 
 - **Project Knowledge** is what this Project has confirmed. For facts about this Project — its architecture, decisions, conventions, environments, vocabulary — Project Knowledge outranks your personal memory. When they disagree, follow the page and cite its source_ref.
 - **Personal memory** is yours: how you like to work, lessons about tools and techniques, preferences of the people you work with. Keep using it for that.
-- Do not copy Project Knowledge into personal memory; read the page again when you need it. Copies go stale when the Project's knowledge changes.
+- Read a page again whenever you need it, and keep personal memory for what is yours: a copy of Project Knowledge goes stale when the Project's knowledge changes.
 
 ## Changing What the Project Knows
 

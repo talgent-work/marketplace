@@ -1,13 +1,24 @@
 {
-  "description": "Talgent Project Knowledge index at session start.",
+  "description": "Talgent session context at start and the review of open Actions before a Turn ends, both answered by the Talgent MCP Gateway.",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "node /opt/talgent-tools/talgent-tools.cjs --session-start-context",
+            "command": "node /opt/talgent-tools/talgent-tools.cjs --hook session-start",
             "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /opt/talgent-tools/talgent-tools.cjs --hook stop",
+            "timeout": 25
           }
         ]
       }
