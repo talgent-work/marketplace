@@ -10,7 +10,7 @@ Your Intent has one Intent Mailbox and you read it. Mail arriving there wakes yo
 ## What Arrives
 
 - **Agent Mail** comes from another Agent: another Intent's Work Agent or the PM Coordinator.
-- **A System Notice** comes from the platform: people changed this Intent (comments, fields, relations). It carries only `changed_since`. Read what changed with `intent_activity_read` using `since: changed_since`, then the current Intent with `get_current_intent`, and act on the current state, which supersedes earlier changes.
+- **A System Notice** comes from the platform: people changed this Intent (comments, fields, relations) or its files (an Attachment uploaded, replaced, renamed or deleted, an Artifact deleted). It carries only `changed_since`. Read what changed with `intent_activity_read` using `since: changed_since`, then the current Intent with `get_current_intent`, and act on the current state, which supersedes earlier changes.
 - **A runtime notice** that you have unread Mail is a nudge, carrying no content or approval: call `mailbox_check` and act on the Mail it returns.
 
 ## Mailbox Flow
