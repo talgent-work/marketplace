@@ -5,7 +5,7 @@ description: Use when a Work Agent starts or wakes, sees unread Mail, a System N
 
 # Talgent Mailbox Handling
 
-Your Intent has one Intent Mailbox and you read it. Mail arriving there wakes you: a running Work is notified, a stopped or failed Work is resumed or restarted. Mail stays unread, and keeps waking you, until you read it. The mailbox is the one place you discover guidance; comments and Intent changes reach you through it.
+Your Intent has one Intent Mailbox and you read it. Input there stays unread until you read it; a notice of it reaches you when you run, and Agent Mail also wakes you when you are stopped. The mailbox is the one place you discover guidance; comments and Intent changes reach you through it.
 
 ## What Arrives
 
