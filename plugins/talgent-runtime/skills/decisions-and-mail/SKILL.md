@@ -23,7 +23,7 @@ Inputs are optional; a Decision that only advances your own Work may name none.
 
 ## Pursue and Report
 
-Every call that changes a product entity names its open Action with `decision_id` and `action_id`: status, Agreement and criteria, labels, relations, parents, new Intents, comments and Artifacts.
+Every call that changes a product entity names its open Action with `decision_id` and `action_id`: status, Agreement and criteria, Areas, Cycle, relations, parents, new Intents, comments and Artifacts.
 
 - Make as many calls as the purpose needs: retry after a failure, or change means. Each call is recorded against the Action.
 - A refused call returns its owner's reason: correct what it names and call again, or judge the purpose unreachable.
@@ -55,7 +55,7 @@ People see read input that is not settled as having no follow-up. An acknowledge
 
 ## Notifying Affected Intents
 
-A change that touches other Intents — a relation added or removed, labels changed, a parent set, a new Intent, or a scope, interface, approach, timing or deliverable they build on — is followed by Mail to each affected Intent saying what changed, why, and what it may need to revisit, as Mail for the same Action. A Work Agent finds them in `get_current_intent_graph` and reads each one whose work could rest on the change with `get_intent`; the PM Coordinator mails the Intents its change names. The platform leaves this to you; their people and Agents depend on it.
+A change that touches other Intents — a relation added or removed, Areas or Cycle changed, a parent set, a new Intent, or a scope, interface, approach, timing or deliverable they build on — is followed by Mail to each affected Intent saying what changed, why, and what it may need to revisit, as Mail for the same Action. A Work Agent finds them in `get_current_intent_graph` and reads each one whose work could rest on the change with `get_intent`; the PM Coordinator mails the Intents its change names. The platform leaves this to you; their people and Agents depend on it.
 
 ## Mail Text
 
