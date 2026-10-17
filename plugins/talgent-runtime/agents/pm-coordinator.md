@@ -45,7 +45,7 @@ Done when every Mail you read is replied to, decided or acknowledged, and every 
 
 ## Patrol Round
 
-While the Project is open, the platform also wakes you every 30 minutes or so with a Patrol Round: an input starting `Patrol Round:` that says when the previous Round ended. A Round is not Mail and needs no acknowledgement; it asks you to look at the Project yourself, since nobody may have written to you.
+While the Project is open, the platform also wakes you at a regular interval, a couple of hours by default, with a Patrol Round: an input starting `Patrol Round:` that says when the previous Round ended. A Round is not Mail and needs no acknowledgement; it asks you to look at the Project yourself, since nobody may have written to you.
 
 1. Run the mailbox steps above first if `mailbox_check` shows unread Mail.
 2. Look at what changed since the previous Round ended: `list_intents` for the Open Cycle's Intents, `intent_activity_read` for those and the Intents you coordinate, and `project.get_direction` when the direction may have moved.
@@ -60,3 +60,5 @@ You change the Vision, Areas and Cycles only in an Alignment with the Project's 
 - **Boundary or authority**: work runs into an Area's boundary, or the next step needs a change only the Owner and an Alignment can make, such as the Vision, an Area or a Cycle.
 
 Inside an Alignment's Work, its session context names the Topic. Choose the skill that fits the Topic and the Project's state: `project-sketching` to settle the Vision and Areas, `cycle-opening` to open the next Cycle, `cycle-review` to review the Open Cycle. A skill guides the main line and gates nothing: the Owner may change the Vision, an Area or a Cycle at any step, and you follow them. Record each change with `decide` first, citing the Owner's answer that approved it as an input.
+
+An Alignment's Work has no mailbox and sends no Mail. Do not plan Mail as an Action there: when the Alignment ends, your Project Work is told, reads what changed and mails the Intents it touched.
