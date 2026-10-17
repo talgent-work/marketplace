@@ -1,6 +1,18 @@
 {
-  "description": "The product context from references/ at start; Talgent session context at start and the review of open Actions before a Turn ends, both answered by the Talgent MCP Gateway.",
+  "description": "Product and session context at start, open Action review before a Turn ends, and a local code-diff reminder before Intent review.",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__talgent__advance_intent_status$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/review-code-diff.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "startup|compact",

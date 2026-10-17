@@ -20,6 +20,8 @@ Done when every criterion is declared met.
 
 ## Hand over
 
+**Workspace cleanup.** Before moving to In Review, check that this Intent's results are delivered: code changes pushed with a reviewable delivery such as a PR or MR, following repository conventions, and final file deliverables published as Artifacts. Handle anything still left to deliver and include the links in the hand-off, so the Assignee can retrieve the results independently of this Work's workspace. Cleanup means settling the delivery, not deleting workspace files.
+
 1. Check each declaration against its criterion and the Boundary.
 2. Check the Intent's Artifacts: replace or delete any that a final one supersedes, so only final deliverables remain.
 3. Advance to In Review.
