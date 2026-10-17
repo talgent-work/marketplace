@@ -13,9 +13,24 @@ Map the decision as a tree: every answer opens the questions that hang off it. T
 
 ## Asking
 
-1. Ask one question per message, in plain conversation, and end your Turn there. Give your recommended answer and the reason for it, so the person can simply agree, adjust or overrule.
+1. Ask one question per message, using the question format below, and end your Turn there. The person can agree, adjust or overrule in plain conversation.
 2. Read their reply. It may settle the question, change the tree, or raise a fact you should look up yourself.
 3. Recompute the frontier and ask the next question.
+
+### Question format
+
+Write in the person's language, with these three blocks separated by blank lines. Use one emoji and a bold heading per block; keep each explanation to one or two sentences.
+
+> 💬 **Question: <the concrete decision to make>**
+> Explain the context and what this choice affects.
+>
+> 💡 **Recommended: <option>**
+> Explain why it fits the person's goals and constraints, including its main trade-off.
+>
+> 🔀 **Alternative: <option>**
+> Explain how it differs, when it would fit better, and why it is less suitable for the current situation.
+
+Include only meaningful alternatives, repeating the alternative block when needed. Omit it when none is useful; for an open question with no grounded recommendation yet, use only the question block. Keep the choice open to the person's own answer.
 
 ## Confirming
 
