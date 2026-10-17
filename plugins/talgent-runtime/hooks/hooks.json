@@ -1,7 +1,17 @@
 {
-  "description": "Talgent session context at start and the review of open Actions before a Turn ends, both answered by the Talgent MCP Gateway.",
+  "description": "The product context from references/ at start; Talgent session context at start and the review of open Actions before a Turn ends, both answered by the Talgent MCP Gateway.",
   "hooks": {
     "SessionStart": [
+      {
+        "matcher": "startup|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/references/product.md\" && printf '\\nThe flow files named above are in %s/references/flows/.\\n' \"${CLAUDE_PLUGIN_ROOT}\"",
+            "timeout": 5
+          }
+        ]
+      },
       {
         "hooks": [
           {
