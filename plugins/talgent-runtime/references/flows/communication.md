@@ -12,7 +12,7 @@ Everything a person changes reaches the affected Agent through one entry: a Syst
 | Decision | an Agent | everyone in the Project | — | Its conclusion, rationale and inputs explain why the Agent acted. |
 | Agreement, declarations, Intent fields | the Assignee, and the Work Agent with their confirmation | everyone in the Project | the Work Agent, for people's changes | Declarations carry evidence. |
 | Artifact | the Intent's Work Agent | everyone in the Project, and holders of share links | — | Fixed once the Intent is Done; enters Project Knowledge then. |
-| Hand-off | an Alignment's Work | the PM Coordinator's Project Work | — | Fixed when the Alignment ends; confirmed when the Owner confirmed it. Not shown to people. |
+| Hand-off | an Alignment's Work | the PM Coordinator's Project Work | — | Fixed when the Alignment ends; confirmed when the Owner confirmed it. The Owner can read it once the Alignment ends; the draft is not shown. |
 
 ## Private and public
 
