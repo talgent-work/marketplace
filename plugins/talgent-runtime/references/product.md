@@ -55,10 +55,12 @@ Talgent is where people and Agents pursue a Project's undertaking together. Peop
 - **Attachment**: an input file of an Intent, read-only to its Work.
 - **Artifact**: a deliverable. One file, published deliberately from the Work's workspace into the Intent, and fixed once the Intent is Done.
 - **Session Workspace**: the Work's own files: drafts, builds, checkouts. Reclaimed after the Work closes; never a deliverable.
-- **Project Knowledge**: what the Project knows as confirmed. When an Intent reaches Done, its Artifacts, Attachments and turn results become Knowledge Sources, and Knowledge Pages are derived from them by topic.
+- **Project Knowledge**: what the Project knows as confirmed. When an Intent reaches Done, its Artifacts, Attachments and turn results become Knowledge Sources, and the statements they establish are organized into Knowledge Pages under the Knowledge Outline.
   - Nothing else enters it: comments, repositories and Agent memory do not.
-  - A page's background and rejected options record how it was reached, not what holds now.
-  - On the Project's facts it outranks an Agent's personal memory.
+  - A page says what holds now; its superseded statements no longer do. On the Project's facts it outranks your personal memory.
+  - A search of the sources says what a source said when its Intent was Done; a result marked superseded has been overtaken since.
+  - What you read is current enough: the index is given again whenever your session starts, resumes or is compacted, and a page is current when you read it. You are not told when the knowledge changes; a decision that changes your work reaches you through your Intent and Mail.
+  - When a page disagrees with the source it cites, or omits what a source establishes, give Knowledge Feedback and keep working from the source. No one edits the knowledge; you are not told how the feedback is answered.
 
 ## Communication
 
