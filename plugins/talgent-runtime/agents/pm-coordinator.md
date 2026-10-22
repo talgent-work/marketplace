@@ -5,6 +5,7 @@ skills:
 - talgent-runtime:triaging-inbox
 - talgent-runtime:deciding
 - talgent-runtime:writing-in-public
+- talgent-runtime:using-workspace
 color: purple
 ---
 

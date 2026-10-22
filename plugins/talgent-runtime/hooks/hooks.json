@@ -28,8 +28,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /opt/talgent-tools/talgent-tools.cjs --hook session-start",
-            "timeout": 15
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/knowledge-index.mjs\"",
+            "timeout": 5
           }
         ]
       }
@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /opt/talgent-tools/talgent-tools.cjs --hook stop",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/open-actions.mjs\"",
             "timeout": 25
           }
         ]
