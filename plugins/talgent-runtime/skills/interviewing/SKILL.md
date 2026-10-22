@@ -1,21 +1,31 @@
 ---
 name: interviewing
-description: Interview the Assignee or the Project Owner until a decision that is theirs is settled, one question at a time in conversation. Use whenever a Goal, an Acceptance Criterion, a Boundary, a deliverable's form, a plan, the Vision, an Area or a Cycle needs their decision, and when another Agent needs your Assignee's answer.
+description: Find with the Assignee or the Project Owner what they actually want, one question at a time in conversation. Use whenever something needs their decision - an Agreement, a plan, the Vision, an Area, a Cycle, a change to any of them - and when another Agent needs your Assignee's answer.
 ---
 
 # Interviewing
 
-The decisions are the person's; finding facts is yours. Read the Intent, its relations, the direction, Project Knowledge, the files and repositories before you ask, and ask only what those cannot answer: what they want, why, what done looks like, what is out.
+The person rarely holds the answer ready: they see where they want to go only dimly, and fog lies between. Asking them to fill in what the scenario must settle gets an empty phrase or an answer made up on the spot. Interviewing is wayfinding instead: finding the way there together, one question at a time. The decisions are theirs and finding facts is yours, so you never answer their side for them.
 
-## The tree
+## The way
 
-Map the decision as a tree: every answer opens the questions that hang off it. The scenario you are in names its top branches. The frontier is every question whose prerequisites are already answered. Ask from the frontier only; a question that depends on an open one waits.
+Keep in mind, as the conversation goes:
+
+- **Destination**: what will be different when the work is done, in the person's words.
+- **Decided**: what the person has settled so far.
+- **Fog**: what you can tell is coming but cannot yet ask precisely.
+- **Out of scope**: what the person ruled beyond the destination.
+
+1. **Destination first.** Ask what they would point at, once it is done, to say it worked. It fixes the scope, so every later question hangs on it.
+2. **Breadth before depth.** Sketch the open questions across the whole way before going deep on any one, so one detail does not swallow the interview.
+3. **The frontier.** Ask only a question you can state precisely now and that needs no answer you have not heard. One you cannot yet state precisely stays in the fog until an answer clears it. Take the one that clears the most.
 
 ## Asking
 
-1. Ask one question per message, using the question format below, and end your Turn there. The person can agree, adjust or overrule in plain conversation.
-2. Read their reply. It may settle the question, change the tree, or raise a fact you should look up yourself.
-3. Recompute the frontier and ask the next question.
+1. Look up the facts the next question needs, in the Intent, its relations, the direction, Project Knowledge, the files and repositories. Facts that only later questions need wait for those questions, so the person is not kept waiting on research their answer may make moot.
+2. Ask from where the person stands: a concrete situation, an example, a consequence, a trade-off, what would make them call the work a failure. When they cannot say, show a rough take to react to: a sample, an outline, a draft criterion.
+3. Write that one question as your message, in the question format below, and end your Turn there. They answer in their own words, so they can adjust or overrule rather than only pick an option you offered.
+4. Read the reply: what it decides, what fog it clears, what it rules out, and the questions it opens. Then ask the next.
 
 ### Question format
 
@@ -32,17 +42,11 @@ Write in the person's language, with these three blocks separated by blank lines
 
 Include only meaningful alternatives, repeating the alternative block when needed. Omit it when none is useful; for an open question with no grounded recommendation yet, use only the question block. Keep the choice open to the person's own answer.
 
-## Confirming
+## Arriving
 
-Confirm by the kind of change:
+The pull to start the work is the sign you have reached the edge of what is decided. The way is clear when no fog remains toward the destination. Write what the scenario must settle from what was decided, with what was ruled out as its limits, in the person's words where they gave them. A part no answer supports is still fog: ask about it.
 
-- **A move of the process** takes the person's answer to `AskUserQuestion`: an Intent's move to Ready or to In Progress, and an Alignment's end, which confirms its hand-off. Ask once, when the phase is settled, showing what their replies settled. The move cites the answer, and the content it shows counts as approved.
-- **A change of content** takes the person's reply: an Agreement, a plan's children and relations. Show the whole of what you will save, and save it once they approve. Create a plan's children only after they approved the plan, since an Intent you create stays.
-- **In an Alignment**, what the Owner settles goes into the hand-off, kept current as each part settles.
-
-## Done when
-
-Every branch of the tree is answered by the person, and nothing in it is your assumption.
+Done when every part of what the scenario must settle rests on the person's answers.
 
 ## For another Agent
 

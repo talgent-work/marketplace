@@ -12,7 +12,7 @@ People in the Project read what you write: comments, Mail, Decisions, declaratio
 | To | Use |
 |---|---|
 | answer a person who asked on the Intent | a reply in their comment's thread |
-| tell the Intent's people something on your own initiative: a delivery, a blocker, a milestone | a top-level comment |
+| tell Project members outside your Work what the Intent's status, Artifacts and turn results do not show, such as a blocker or change that affects another Intent | a top-level comment |
 | ask, tell or coordinate with another Agent | Mail to its mailbox |
 | explain a judgment you acted on | the Decision's rationale |
 | show why a criterion holds | the declaration's evidence |

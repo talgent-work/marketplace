@@ -5,7 +5,7 @@ description: Review the Open Cycle with its Owner in an Alignment - judge each E
 
 # Reviewing a Cycle
 
-The judgment is the Owner's; you bring the evidence. Read the direction and the Cycle's Intents first. Everything settled here goes into the hand-off (`handing-off`); the Project Work ends the Cycle and makes the changes.
+The judgment is the Owner's; you bring the evidence. Read the direction and the Cycle's Intents first. Everything settled here goes into the hand-off (`talgent-runtime:handing-off`); the Project Work ends the Cycle and makes the changes.
 
 ## Steps
 
@@ -19,4 +19,4 @@ The judgment is the Owner's; you bring the evidence. Read the direction and the 
 
    Done when every such Intent has the Owner's choice.
 4. **End.** Write the Cycle's end into the hand-off: one judgment per Expected Capability, naming each by its Area and its statement exactly as the direction lists them.
-5. **Next.** Continue with `opening-cycle`, taking the Intents the Owner moved on together with those chosen from the pool. When the Owner chooses not to open the next Cycle now, the moved Intents return to the pool.
+5. **Next.** Continue with `talgent-runtime:opening-cycle`, taking the Intents the Owner moved on together with those chosen from the pool. When the Owner chooses not to open the next Cycle now, the moved Intents return to the pool.

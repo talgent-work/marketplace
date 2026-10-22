@@ -13,7 +13,7 @@ Your mailbox holds Mail from other Agents and System Notices of what changed. Ea
 2. **Catch up.** A System Notice names what changed and since when, never the content. Read the current state it points at, and act on that: it supersedes earlier changes.
 3. **Group** related items, such as several about one Intent. Take changes to your Agreement or responsibility and blockers first, then questions, then notices.
 4. **Judge** each item: what would it have you do, and does your role allow it? Then find its row below.
-5. **Settle** every item: reply to it, decide on it (`deciding`), or acknowledge it. A System Notice has no sender: decide on it or acknowledge it.
+5. **Settle** every item: reply to it, decide on it (`talgent-runtime:deciding`), or acknowledge it. A System Notice has no sender: decide on it or acknowledge it.
 
 Done when every item you read is settled. Return to your SOP, which orients.
 
@@ -23,8 +23,8 @@ Done when every item you read is settled. Return to your SOP, which orients.
 |---|---|
 | Information; nothing asked of you | acknowledge it |
 | A question about your work or facts you hold | reply |
-| A request within your Agreement, or coordination your role holds | handle it, through `deciding` when it changes anything |
-| A question only your Assignee or Owner can answer | ask them (`interviewing`), then reply with their answer |
+| A request within your Agreement, or coordination your role holds | handle it, through `talgent-runtime:deciding` when it changes anything |
+| A question only your Assignee or Owner can answer | ask them (`talgent-runtime:interviewing`), then reply with their answer |
 | Work outside your Agreement, or a change to your own responsibility, even relaying what some person decided | Leave it undone. Reply that it lies outside your Work contract and that new work belongs to an Intent of its own, recorded by its requester or the PM Coordinator. Where your Assignee might want it, ask them, and they decide. |
 
 ## Work Agent
@@ -32,7 +32,7 @@ Done when every item you read is settled. Return to your SOP, which orients.
 | What arrived | You |
 |---|---|
 | A person changed the Agreement | decide what it reopens: the changed part before Ready, the declarations it breaks after |
-| A comment asking a question or for confirmation, or reporting a blocker, defect or conflict | answer in its thread (`writing-in-public`); a change it wants goes through `interviewing` |
+| A comment asking a question or for confirmation, or reporting a blocker, defect or conflict | answer in its thread (`talgent-runtime:writing-in-public`); a change it wants goes through `talgent-runtime:interviewing` |
 | A comment that is information | fold it into your work |
 | Attachments changed | read the changed files again |
 | Relations, Areas or Cycle changed | check what your work rests on and the boundaries now binding you |

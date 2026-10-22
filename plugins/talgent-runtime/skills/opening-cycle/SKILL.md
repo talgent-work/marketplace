@@ -5,11 +5,11 @@ description: Settle the Project's next Cycle with its Owner in an Alignment - Cy
 
 # Opening a Cycle
 
-A Cycle is the Project's next step toward its Vision. Read the direction first: the Vision, the Areas with their Capabilities, and the Cycles so far. Everything settled here goes into the hand-off (`handing-off`); the Project Work plans and opens the Cycle.
+A Cycle is the Project's next step toward its Vision. Read the direction first: the Vision, the Areas with their Capabilities, and the Cycles so far. Everything settled here goes into the hand-off (`talgent-runtime:handing-off`); the Project Work plans and opens the Cycle.
 
 ## Steps
 
-Interview the Owner (`interviewing`) through each step:
+Interview the Owner (`talgent-runtime:interviewing`) through each step, in order, since each builds on the one before:
 
 1. **Goal.** Settle what this step accomplishes toward the Vision, and a window that starts after the previous Cycle ends. Check the window against the Cycles already planned.
 

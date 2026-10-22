@@ -5,7 +5,7 @@ description: Sketch or redraw a Project's Vision and Areas with its Owner in an 
 
 # Sketching a Project
 
-Read the direction first. A Project that already has a Vision or Areas is refined, never started over. Everything settled here goes into the hand-off (`handing-off`); the Project Work makes it so.
+Read the direction first. A Project that already has a Vision or Areas is refined, never started over. Everything settled here goes into the hand-off (`talgent-runtime:handing-off`); the Project Work makes it so.
 
 ## Map the ground
 
@@ -15,7 +15,7 @@ Read the direction first. A Project that already has a Vision or Areas is refine
 
 ## Settle it
 
-Interview the Owner (`interviewing`) one open question at a time, writing each settled part into the hand-off whole:
+Interview the Owner (`talgent-runtime:interviewing`) until each part below rests on their answers, writing each into the hand-off whole as it settles:
 
 1. **Vision**: one sentence, the end state once the Project succeeds and for whom. An overview for newcomers is optional.
 2. **Areas**: the parts the Vision splits into. Each carries one part of it, and together they cover it. Settle the list of names.

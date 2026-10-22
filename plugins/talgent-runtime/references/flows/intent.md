@@ -2,7 +2,7 @@
 
 ## Recording
 
-A person records an Intent as one sentence in their own words. The PM Coordinator also records Intents, for work nobody holds or to fill a Cycle, and becomes their Requester. A Work Agent records child Intents of its own Intent once its Assignee confirmed the plan; the parent's Assignee is their Requester.
+A person records an Intent as one sentence in their own words. The PM Coordinator also records Intents, for work nobody holds or to fill a Cycle, and becomes their Requester. A Work Agent records child Intents of its own Intent once its Assignee confirmed the plan with the move to Ready; the parent's Assignee is their Requester.
 
 The recorder places it: its Areas, its Cycle or the pool, its relations. The Assignee may be named or left for people to take. The recorder leaves the Agreement to the Intent's Assignee.
 
@@ -12,18 +12,13 @@ The Assignee starts the Intent's Work, and from then on cannot change. The Work 
 
 ## Backlog to Ready
 
-The Work Agent and the Assignee settle the Agreement: the Goal, then each Acceptance Criterion, the deliverable's form, then the Boundary. The Assignee confirms it, and the Intent moves to Ready.
+The Work Agent and the Assignee find what the Intent means and how it is carried out: its Agreement, whether it splits, each child with its sentence, its Assignee and what it contributes, and its relations to other Intents. A plan may have no children. The Assignee confirms the whole; the Work Agent saves the Agreement, records each child and relation, and the Intent moves to Ready.
+
+Each child starts in Backlog with its own Assignee, who confirms its own Agreement. The parent's Boundary binds it.
 
 ## Ready to In Progress
 
-The Work Agent proposes a plan:
-
-- whether to split the Intent, and for each child its sentence, its Assignee and what it contributes;
-- its relations to other Intents.
-
-The Assignee confirms it. The Work Agent records each child and relation, and the Intent moves to In Progress. A plan may have no children.
-
-Each child starts in Backlog with its own Assignee, who confirms its own Agreement. The parent's Boundary binds it.
+The Intent starts once the Intents it depends on are far enough along for the work to begin. The move needs no confirmation: the move to Ready confirmed everything it rests on.
 
 ## In Progress to In Review
 

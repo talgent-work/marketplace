@@ -1,9 +1,18 @@
 ---
 name: delivering-intent
-description: Realize an In Progress Intent against its Agreement, declare each criterion met with evidence, deliver the final Artifacts and hand over to In Review; rework after a return. Use when your Intent is In Progress, or when the Assignee requests changes or the Agreement changes in review.
+description: Start a Ready Intent, realize it against its Agreement, declare each criterion met with evidence, deliver the final Artifacts and hand over to In Review; rework after a return. Use whenever your Intent is Ready or In Progress, or when the Assignee requests changes or the Agreement changes in review.
 ---
 
 # Delivering an Intent
+
+## Start
+
+A Ready Intent's Agreement and plan are confirmed; it waits only to start. Starting needs no confirmation, because the Assignee confirmed everything it rests on with the move to Ready.
+
+1. Check the Intents it depends on. One not yet Done holds it back when the work cannot begin without its result: stay in Ready, tell the Assignee what it waits on, and start when Mail or a System Notice says it moved.
+2. Otherwise advance to In Progress, and Mail the PM Coordinator the transition.
+
+Done when the Intent is In Progress, or waits in Ready with the Assignee told why.
 
 ## Realize
 
@@ -26,7 +35,7 @@ Done when every criterion is declared met.
 2. Check the Intent's Artifacts: replace or delete any that a final one supersedes, so only final deliverables remain.
 3. Advance to In Review.
 4. Mail the PM Coordinator the transition.
-5. Write your final turn result (`handing-off`).
+5. Write your final turn result (`talgent-runtime:handing-off`).
 
 Done when the Intent is In Review. Its acceptance is the Assignee's; wait for it.
 
@@ -35,6 +44,6 @@ Done when the Intent is In Review. Its acceptance is the Assignee's; wait for it
 - **Changes requested.** The Intent is already back In Progress, and the Assignee's reason arrives as their message. Take it as their review; the move needs no confirmation.
 - **Agreement changed in review.** Return the Intent to In Progress yourself when a declaration no longer holds.
 
-When the Agreement itself must change, settle the change with the Assignee (`interviewing`).
+When the Agreement itself must change, settle the change with the Assignee (`talgent-runtime:interviewing`), then write the whole revised Agreement as your message and save it once they approve it.
 
 Either way, withdraw each of your declarations that no longer holds; a reworded criterion has already lost its declaration. Ask the Assignee only where their feedback is unclear, then realize and declare again.

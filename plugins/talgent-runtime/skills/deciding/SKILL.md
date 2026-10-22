@@ -11,7 +11,7 @@ People read your Decisions to see what you judged and why. Record a Decision for
 
 1. **Check it is yours.** As a Work Agent, every Action you set out on traces to one of these:
    - an Acceptance Criterion;
-   - shaping or planning your Intent;
+   - planning your Intent;
    - your Assignee's confirmation;
    - coordination your role holds, such as telling affected Intents or reporting status.
 

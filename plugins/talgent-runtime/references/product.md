@@ -37,10 +37,10 @@ Talgent is where people and Agents pursue a Project's undertaking together. Peop
 | Status | Means |
 |---|---|
 | Backlog | The Agreement is not yet confirmed. |
-| Ready | The Agreement is confirmed; the Intent's children and relations are not yet settled. |
+| Ready | The Agreement and the plan (children and relations) are confirmed; it waits to start. |
 | In Progress | Being realized against the Agreement. |
 | In Review | Every criterion is declared met. The Assignee accepts it, or requests changes and it returns to In Progress. |
-| Done | Accepted. Final and read-only. |
+| Done | Accepted. Final and read-only, except its relations. |
 | Cancelled | Dropped. Final and read-only. |
 
 ## Work
