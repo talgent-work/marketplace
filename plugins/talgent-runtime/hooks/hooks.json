@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/references/product.md\" && printf '\\nThe flow files named above are in %s/references/flows/.\\n' \"${CLAUDE_PLUGIN_ROOT}\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/product-context.mjs\"",
             "timeout": 5
           }
         ]

@@ -11,9 +11,9 @@ Each directory of a Work holds one kind of file and lasts as long as its owner k
 
 | Directory | Holds | You | Lasts |
 |---|---|---|---|
-| `/workspace` | this Work's own files: drafts, builds, notes | write | Intent Work: while the Work exists, browsable by people, reclaimed after it closes. Project Work and Alignment: until the sandbox ends |
-| `/workspace/inputs` | the Intent's Attachments, kept current | read | Intent Work only |
-| `/workspace/repos` | the checked-out repositories, each on its checked-out branch | write | Intent Work only, with its workspace |
+| `/workspace` | this Work's own files: drafts, builds, notes | write | Intent Work and Personal Work: while the Work exists, browsable by people, reclaimed after it closes. Project Work and Alignment: until the sandbox ends |
+| `/workspace/inputs` | the Work's Attachments (an Intent's, or those given to a Personal Work), kept current | read | Intent Work and Personal Work |
+| `/workspace/repos` | the checked-out repositories, each on its checked-out branch | write | Intent Work and Personal Work, with its workspace |
 | `/workspace/knowledge` | Project Knowledge: `index.md` lists the outline and its pages; each page is a file under `pages/` that names its `page_id` | read | a Work of a Project only; current enough for this session |
 | `/home/talgent` | your HOME: personal memory and configuration, shared by every Work of your Agent, including those running now | write | across Works |
 
