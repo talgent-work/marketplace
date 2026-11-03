@@ -1,6 +1,6 @@
 {
   "name": "talgent-runtime",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Talgent's runtime for its Agents: the product context, one role per run mode (Personal Work, Work Agent, PM Coordinator, Alignment) and the Skills they act through.",
   "author": {
     "name": "Talgent"

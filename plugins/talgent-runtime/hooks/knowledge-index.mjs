@@ -4,10 +4,22 @@ import { join } from "node:path";
 // The Project Knowledge index from the Work's read-only mount, printed when a
 // session starts, resumes or is compacted. Pages beyond the budget are
 // counted and left to the index file, so a large Project cannot crowd out the
-// Work's own context. A Work without a Project has no mount and gets nothing;
-// an unreadable mount says so rather than failing the session.
-const root = process.env.TALGENT_KNOWLEDGE_ROOT || "/workspace/knowledge";
+// Work's own context; an unreadable mount says so rather than failing the
+// session. Only a Cloud Work has the mount, at TALGENT_KNOWLEDGE_ROOT or
+// /workspace/knowledge. A Work of a Project on a Managed Computer has none:
+// TALGENT_PROJECT_ID names its Project, and it is pointed to the Talgent
+// knowledge tools instead. A Work without a Project gets nothing.
+const project = process.env.TALGENT_PROJECT_ID || "";
+// The Cloud mount path applies only in a Cloud sandbox, whose Work root is
+// /workspace; a Managed Computer's Work root is a directory on the machine.
+const cloud = (process.env.TALGENT_WORK_ROOT || "/workspace") === "/workspace";
+const root = process.env.TALGENT_KNOWLEDGE_ROOT || (cloud ? "/workspace/knowledge" : "");
 const budget = Number(process.env.TALGENT_KNOWLEDGE_INDEX_BYTES) || 8_000;
+
+const throughTools = `# Project Knowledge
+
+This Work has no knowledge files; read Project Knowledge through the Talgent tools: knowledge.read_outline lists the outline and its pages with their page_id, knowledge.read_page reads one page, and knowledge.search searches the sources.
+`;
 
 // The index writes the nature as a quoted string.
 function unquote(value) {
@@ -63,4 +75,5 @@ function knowledgeIndex(root, budget) {
   return out.join("\n").replace(/\n*$/, "\n");
 }
 
-process.stdout.write(knowledgeIndex(root, budget));
+const index = root ? knowledgeIndex(root, budget) : "";
+process.stdout.write(index || (project ? throughTools : ""));

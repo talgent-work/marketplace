@@ -57,7 +57,7 @@ This Work belongs to a Project. In Talgent Orchestra, people and Agents pursue a
   - Nothing else enters it: comments, repositories and Agent memory do not.
   - A page says what holds now; its superseded statements no longer do. On the Project's facts it outranks your personal memory.
   - A search of the sources says what a source said when its Intent was Done; a result marked superseded has been overtaken since.
-  - What you read is current enough: the index is given again whenever your session starts, resumes or is compacted, and a page is current when you read it. You are not told when the knowledge changes; a decision that changes your work reaches you through your Intent and Mail.
+  - What you read is current enough: the index, or on a Managed Computer where to read it, is given again whenever your session starts, resumes or is compacted, and a page is current when you read it. You are not told when the knowledge changes; a decision that changes your work reaches you through your Intent and Mail.
   - When a page disagrees with the source it cites, or omits what a source establishes, give Knowledge Feedback and keep working from the source. No one edits the knowledge; you are not told how the feedback is answered.
 
 ## Communication
