@@ -1,18 +1,6 @@
 {
-  "description": "Product and session context at start, open Action review before a Turn ends, and a local code-diff reminder before Intent review.",
+  "description": "The core product context at session start.",
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "^mcp__talgent__advance_intent_status$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/review-code-diff.mjs\"",
-            "timeout": 15
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "matcher": "startup|compact",
@@ -21,26 +9,6 @@
             "type": "command",
             "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/product-context.mjs\"",
             "timeout": 5
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/knowledge-index.mjs\"",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/open-actions.mjs\"",
-            "timeout": 25
           }
         ]
       }

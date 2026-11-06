@@ -1,6 +1,6 @@
 ---
 name: interviewing
-description: Find with the person you work for - a Personal Work's owner, the Assignee or the Project Owner - what they actually want, one question at a time in conversation. Use whenever something needs their decision - what a Personal Work should produce, an Agreement, a plan, the Vision, an Area, a Cycle, a change to any of them - and when another Agent needs your Assignee's answer.
+description: Find with the person you work for - a Personal Work's owner, or whom a Work of a Project's product context names - what they actually want, one question at a time in conversation. Use whenever something needs their decision - what the Work should produce, a plan, a change to either - and when another Agent needs their answer.
 ---
 
 # Interviewing
@@ -22,7 +22,7 @@ Keep in mind, as the conversation goes:
 
 ## Asking
 
-1. Look up the facts the next question needs, in what the Work holds: the files and repositories, and in a Work of a Project the Intent, its relations, the direction and Project Knowledge. Facts that only later questions need wait for those questions, so the person is not kept waiting on research their answer may make moot.
+1. Look up the facts the next question needs, in what the Work holds: the files and repositories, and in a Work of a Project what its product context names. Facts that only later questions need wait for those questions, so the person is not kept waiting on research their answer may make moot.
 2. Ask from where the person stands: a concrete situation, an example, a consequence, a trade-off, what would make them call the work a failure. When they cannot say, show a rough take to react to: a sample, an outline, a draft criterion.
 3. Write that one question as your message, in the question format below, and end your Turn there. They answer in their own words, so they can adjust or overrule rather than only pick an option you offered.
 4. Read the reply: what it decides, what fog it clears, what it rules out, and the questions it opens. Then ask the next.
@@ -50,4 +50,4 @@ Done when every part of what the scenario must settle rests on the person's answ
 
 ## For another Agent
 
-When Mail asks a question only your Assignee or Owner can answer, ask them in conversation, then reply to the Mail with their answer.
+When another Agent asks a question only the person you work for can answer, ask them in conversation, then answer it where it asked, with their answer.

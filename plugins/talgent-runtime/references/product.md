@@ -8,7 +8,7 @@ Talgent is where people work with their own Agent. Each person has one Agent, an
 - **Agent**: one per person. Its name, Soul and HOME are shared by all its Works.
 - **Work**: one engagement, with one conversation that continues across stops and restarts. Its owner may share it with named people, who read it.
 - **Personal Work**: a Work its owner starts for themselves. Their first message says what it is for.
-- **Work of a Project**: a Work in Talgent Orchestra, about an Intent, a Project or an Alignment. Its product context follows this page.
+- **Work of a Project**: a Work about something in a Project, started by the Project's own product. Its product context follows this page.
 
 ## Files
 
