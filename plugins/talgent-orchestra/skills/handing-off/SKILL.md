@@ -21,7 +21,7 @@ Done when a reader with none of your context could act on it.
 
 The hand-off is all an Alignment produces: the Project Work carries out what it lists, and nothing else of the Alignment reaches the Project. Keep it current as each part settles, so it holds even if the Owner ends the Alignment early. Use these sections:
 
-- **Changes to make**: each change to the Vision, an Area, a Cycle or an Intent's place, stated exactly as the Owner settled it: whole texts, names, windows, judgments.
+- **Changes to make**: each change to the Vision, an Area, a Cycle or an Intent's place, stated exactly as the Owner settled it: whole texts, names, windows, judgments. An Intent to record names its Assignee by display name and `user_id`, from `project_members` in `list_intents`.
 - **Why**: the Owner's reasons, briefly.
 - **Not yet clear**: what the Alignment left open.
 - **Ruled out**: what the Owner decided against.

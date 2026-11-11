@@ -12,7 +12,7 @@ An Intent belongs to whoever takes it. You record it and place it; its Assignee 
 1. **Look first.** Read the Intents that could already hold the work: your Intent's relations, or the Project's Intents. Recording twice records two.
 2. **Record it** under an Action of `talgent-orchestra:deciding`. Give it:
    - its title: one sentence saying what needs doing and for whom, in the words of the person who wants it;
-   - its Assignee, only as approved or named; otherwise people take it;
+   - its Assignee, only as approved or named, by that member's `user_id` from `project_members` (`list_intents` for the PM Coordinator, `get_current_intent` for a Work Agent), never a username or display name; otherwise people take it;
    - its Areas and its Cycle, or the pool;
    - its relations: what it depends on, what depends on it, what it belongs with.
 3. **Hand it its context** (`talgent-orchestra:handing-off`): why it exists and what it is for. A child may receive the parent's relevant criteria and Boundary as material for its Agreement. Its Goal, Acceptance Criteria and Boundary are its Assignee's to confirm.

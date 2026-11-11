@@ -1,7 +1,7 @@
 {
   "name": "talgent-orchestra",
-  "version": "0.0.1",
-  "description": "Talgent Orchestra's runtime for its Agents, beside the core runtime plugin: the Project context, one role per Project run mode (Work Agent, PM Coordinator, Alignment) and the project Skills they act through.",
+  "version": "0.1.0",
+  "description": "Talgent Orchestra's plugin for its Agents, beside the core plugin talgent: the Project context, one role per Project run mode (Work Agent, PM Coordinator, Alignment) and the project Skills they act through.",
   "author": {
     "name": "Talgent"
   },

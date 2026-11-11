@@ -14,7 +14,7 @@ An Alignment changes nothing in the Project itself; its hand-off lists what the 
 3. **Read the current direction and Intents**, so each change applies to what holds now.
 4. **Apply the changes** in the order the hand-off gives, under one Decision whose Actions are its purposes (`talgent-orchestra:deciding`):
    - the Vision, Areas and Cycles, exactly as written;
-   - Intents placed in Areas or Cycles, related, or recorded (`talgent-orchestra:recording-intents`).
+   - Intents placed in Areas or Cycles, related, or recorded (`talgent-orchestra:recording-intents`), each Assignee by the `user_id` the hand-off gives; a hand-off that names a person without one is matched against `project_members` in `list_intents`, never passed as written.
 5. **A change refused** stays undone: record why, and invite the Owner to an Alignment on it.
 6. **Tell the Intents** each change touches, by Mail: what changed, why, and what they may need to revisit.
 
