@@ -5,10 +5,15 @@ Claude Code plugins. The platform synchronizes this marketplace independently of
 application and sandbox image releases. It does not vendor the official Anthropic
 plugins; use `anthropics/claude-plugins-official` as a separate marketplace.
 
-Plugin development sources live under `plugins/` in `jacexh/talgent`. Its
-`Publish Marketplace` workflow checks out this repository independently, copies
-changed plugin packages, increments their declared versions, and publishes a
-commit plus per-plugin version tags. It does not update a submodule pointer.
+Two repositories publish here, each touching only its own plugins' entries
+and packages: `talgent` and `talgent-api` come from `plugins/` in
+[`talgent-work/workbench`](https://github.com/talgent-work/workbench), and
+`talgent-orchestra` from `plugins/` in `talgent-work/orchestra`. Each
+repository's `Publish Marketplace` workflow checks out this repository, starts
+from the current `main`, copies its changed plugin packages, increments their
+declared versions and publishes a commit plus per-plugin version tags; a push
+raced by the other repository is retried a bounded number of times. All plugins
+here are Apache-2.0.
 Manual dispatch selects a source branch, tag or commit and defaults to dry-run.
 Versions use only `x.y.z`: development/test publications increment `z`; changes
 merged to `master` increment `y` and reset `z` to zero. An already tested package
