@@ -7,28 +7,14 @@
   "description": "Authoritative distribution of first-party Talgent Claude Code plugins.",
   "plugins": [
     {
-      "name": "talgent-runtime",
-      "displayName": "Talgent Runtime",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/talgent-work/marketplace.git",
-        "path": "plugins/talgent-runtime",
-        "ref": "talgent-runtime-v0.22.0"
-      },
-      "category": "Internal Systems",
-      "defaultEnabled": true,
-      "description": "Default Talgent Work runtime context: activates a Work executor agent, Intent workspace guidance, and lightweight plugin hook telemetry.",
-      "version": "0.22.0"
-    },
-    {
       "name": "talgent",
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent",
-        "ref": "talgent-v0.0.1"
+        "ref": "talgent-v0.1.0"
       },
-      "version": "0.0.1",
+      "version": "0.1.0",
       "description": "Talgent's core plugin for its Agents: the product context, the Personal Work role and the Skills every Work acts through.",
       "author": {
         "name": "Talgent"
@@ -41,9 +27,9 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent-api",
-        "ref": "talgent-api-v0.0.1"
+        "ref": "talgent-api-v0.1.0"
       },
-      "version": "0.0.1",
+      "version": "0.1.0",
       "description": "Talgent's public API for Agents that call it directly: publishing a Work's Artifacts and reading its owner's Personal Library.",
       "author": {
         "name": "Talgent"
