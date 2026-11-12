@@ -12,9 +12,9 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent",
-        "ref": "talgent-v0.1.2"
+        "ref": "talgent-v0.2.0"
       },
-      "version": "0.1.2",
+      "version": "0.2.0",
       "description": "Talgent's core plugin for its Agents: the product context, the Standalone Work role and the Skills every Work acts through.",
       "author": {
         "name": "Talgent"
@@ -27,9 +27,9 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent-api",
-        "ref": "talgent-api-v0.1.0"
+        "ref": "talgent-api-v0.2.0"
       },
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Talgent's public API for Agents that call it directly: publishing a Work's Artifacts and reading its owner's Personal Library.",
       "author": {
         "name": "Talgent"
