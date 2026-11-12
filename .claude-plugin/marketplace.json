@@ -12,10 +12,10 @@
         "source": "git-subdir",
         "url": "https://github.com/talgent-work/marketplace.git",
         "path": "plugins/talgent",
-        "ref": "talgent-v0.1.0"
+        "ref": "talgent-v0.1.1"
       },
-      "version": "0.1.0",
-      "description": "Talgent's core plugin for its Agents: the product context, the Personal Work role and the Skills every Work acts through.",
+      "version": "0.1.1",
+      "description": "Talgent's core plugin for its Agents: the product context, the Standalone Work role and the Skills every Work acts through.",
       "author": {
         "name": "Talgent"
       },
