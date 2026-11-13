@@ -45,7 +45,7 @@ This Work belongs to a Project. In Talgent Orchestra, people and Agents pursue a
 
 ## Work
 
-- **Work Subject**: what a Work of a Project is about: an Intent, the Project, or an Alignment.
+- **Work Key**: how Orchestra finds a Work started in the name of a Project again: an Intent, the Project, or an Alignment.
 - **Alignment**: one exchange between the Project Owner and the PM Coordinator on one Topic, in its own Work. It changes nothing in the Project itself: what it settles goes into its hand-off. It ends when the Topic is settled.
 - **Hand-off**: the Markdown an Alignment's Work writes for the PM Coordinator's Project Work, kept current through the Alignment. Ending the Alignment with the Owner's confirmation fixes it as confirmed; the Project Work then carries it out.
 - **Round**: the PM Coordinator's regular look at the Project, one of its Patrol, while the Project is open.

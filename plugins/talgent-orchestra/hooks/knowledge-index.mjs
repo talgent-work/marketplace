@@ -1,15 +1,17 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { projectOfWorkCaller } from "./work-caller.mjs";
 
 // The Project Knowledge index from the Work's read-only mount, printed when a
 // session starts, resumes or is compacted. Pages beyond the budget are
 // counted and left to the index file, so a large Project cannot crowd out the
 // Work's own context; an unreadable mount says so rather than failing the
 // session. Only a Cloud Work has the mount, at TALGENT_KNOWLEDGE_ROOT or
-// /workspace/knowledge. A Work of a Project on a Managed Computer has none:
-// TALGENT_PROJECT_ID names its Project, and it is pointed to the Talgent
-// knowledge tools instead. A Work without a Project gets nothing.
-const project = process.env.TALGENT_PROJECT_ID || "";
+// /workspace/knowledge. A Work started in the name of a Project on a Managed
+// Computer has none: TALGENT_WORK_CALLER names its Work Caller as
+// "project:<id>", and it is pointed to the Talgent knowledge tools instead.
+// Any other Work gets nothing.
+const project = projectOfWorkCaller();
 // The Cloud mount path applies only in a Cloud sandbox, whose Work root is
 // /workspace; a Managed Computer's Work root is a directory on the machine.
 const cloud = (process.env.TALGENT_WORK_ROOT || "/workspace") === "/workspace";
